@@ -17,16 +17,16 @@ public class MyBiomeTagProvider extends BiomeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(MysticalCreatures.PHOENIX_SPAWNABLE).add(Biomes.BASALT_DELTAS);
-        tag(MysticalCreatures.JACKALOPE_SPAWNABLE) // same as brown rabbits
+        tag(MysticalCreatures.PHOENIX_SPAWNS_ON).add(Biomes.BASALT_DELTAS);
+        tag(MysticalCreatures.JACKALOPE_SPAWNS_ON) // same as brown rabbits
                 .add(Biomes.FLOWER_FOREST)
                 .add(Biomes.TAIGA)
                 .add(Biomes.MEADOW)
                 .add(Biomes.OLD_GROWTH_PINE_TAIGA)
                 .add(Biomes.OLD_GROWTH_SPRUCE_TAIGA)
                 .add(Biomes.CHERRY_GROVE);
-        tag(MysticalCreatures.UNICORN_SPAWNABLE).addTag(BiomeTags.IS_FOREST);
-        tag(MysticalCreatures.TROLL_SPAWNABLE)
+        tag(MysticalCreatures.UNICORN_SPAWNS_ON).addTag(BiomeTags.IS_FOREST);
+        tag(MysticalCreatures.TROLL_SPAWNS_ON)
                 .add(Biomes.RIVER)
                 .add(Biomes.FROZEN_RIVER);
     }

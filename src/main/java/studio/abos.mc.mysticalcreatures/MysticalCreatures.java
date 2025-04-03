@@ -1,8 +1,5 @@
 package studio.abos.mc.mysticalcreatures;
 
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
@@ -13,19 +10,11 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -38,7 +27,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -47,8 +35,6 @@ import studio.abos.mc.mysticalcreatures.datagen.MyBlockTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyItemTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyLanguageProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyModelProvider;
-
-import java.util.concurrent.CompletableFuture;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(MysticalCreatures.MODID)
@@ -70,10 +56,10 @@ public class MysticalCreatures
     public static final TagKey<Item> UNICORN_BREEDING_ITEMS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "unicorn_breeding_items"));
     public static final TagKey<Item> TROLL_BREEDING_ITEMS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "troll_breeding_items"));
 
-    public static final TagKey<Biome> PHOENIX_SPAWNABLE = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "phoenix_spawnable"));
-    public static final TagKey<Biome> JACKALOPE_SPAWNABLE = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "jackalope_spawnable"));
-    public static final TagKey<Biome> UNICORN_SPAWNABLE = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "unicorn_spawnable"));
-    public static final TagKey<Biome> TROLL_SPAWNABLE = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "troll_spawnable"));
+    public static final TagKey<Biome> PHOENIX_SPAWNS_ON = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "phoenix_spawns_on"));
+    public static final TagKey<Biome> JACKALOPE_SPAWNS_ON = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "jackalope_spawns_on"));
+    public static final TagKey<Biome> UNICORN_SPAWNS_ON = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "unicorn_spawns_on"));
+    public static final TagKey<Biome> TROLL_SPAWNS_ON = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "troll_spawns_on"));
 
     // Creates a new Block with the id "mysticalcreatures:example_block", combining the namespace and path
     // public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
