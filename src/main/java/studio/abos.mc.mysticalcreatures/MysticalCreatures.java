@@ -1,5 +1,14 @@
 package studio.abos.mc.mysticalcreatures;
 
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.biome.Biome;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -33,6 +42,13 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import studio.abos.mc.mysticalcreatures.datagen.MyBiomeTagProvider;
+import studio.abos.mc.mysticalcreatures.datagen.MyBlockTagProvider;
+import studio.abos.mc.mysticalcreatures.datagen.MyItemTagProvider;
+import studio.abos.mc.mysticalcreatures.datagen.MyLanguageProvider;
+import studio.abos.mc.mysticalcreatures.datagen.MyModelProvider;
+
+import java.util.concurrent.CompletableFuture;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(MysticalCreatures.MODID)
@@ -49,22 +65,36 @@ public class MysticalCreatures
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "mysticalcreatures" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    // Creates a new Block with the id "mysticalcreatures:example_block", combining the namespace and path
-    public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
-    // Creates a new BlockItem with the id "mysticalcreatures:example_block", combining the namespace and path
-    public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
+    public static final TagKey<Item> PHOENIX_BREEDING_ITEMS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "phoenix_breeding_items"));
+    public static final TagKey<Item> JACKALOPE_BREEDING_ITEMS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "jackalope_breeding_items"));
+    public static final TagKey<Item> UNICORN_BREEDING_ITEMS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "unicorn_breeding_items"));
+    public static final TagKey<Item> TROLL_BREEDING_ITEMS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "troll_breeding_items"));
 
-    // Creates a new food item with the id "mysticalcreatures:example_id", nutrition 1 and saturation 2
-    public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
-            .alwaysEdible().nutrition(1).saturationModifier(2f).build()));
+    public static final TagKey<Biome> PHOENIX_SPAWNABLE = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "phoenix_spawnable"));
+    public static final TagKey<Biome> JACKALOPE_SPAWNABLE = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "jackalope_spawnable"));
+    public static final TagKey<Biome> UNICORN_SPAWNABLE = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "unicorn_spawnable"));
+    public static final TagKey<Biome> TROLL_SPAWNABLE = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "troll_spawnable"));
+
+    // Creates a new Block with the id "mysticalcreatures:example_block", combining the namespace and path
+    // public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
+    // Creates a new BlockItem with the id "mysticalcreatures:example_block", combining the namespace and path
+    // public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
+
+    public static final DeferredItem<Item> PHOENIX_FEATHER = ITEMS.registerSimpleItem("phoenix_feather", new Item.Properties().rarity(Rarity.RARE).fireResistant());
+    public static final DeferredItem<Item> JACKALOPE_ANTLERS = ITEMS.registerSimpleItem("jackalope_antlers", new Item.Properties().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> UNICORN_HORN = ITEMS.registerSimpleItem("unicorn_horn", new Item.Properties().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> TROLL_HEART = ITEMS.registerSimpleItem("troll_heart", new Item.Properties().rarity(Rarity.RARE));
 
     // Creates a creative tab with the id "mysticalcreatures:example_tab" for the example item, that is placed after the combat tab
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("mysticalcreatures", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.mysticalcreatures")) //The language key for the title of your CreativeModeTab
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> EXAMPLE_ITEM.get().getDefaultInstance())
+            .icon(() -> UNICORN_HORN.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
+                output.accept(PHOENIX_FEATHER);
+                output.accept(JACKALOPE_ANTLERS);
+                output.accept(UNICORN_HORN);
+                output.accept(TROLL_HEART);
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -96,29 +126,33 @@ public class MysticalCreatures
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-
-        if (Config.logDirtBlock)
-            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+//        LOGGER.info("HELLO FROM COMMON SETUP");
+//
+//        if (Config.logDirtBlock)
+//            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
+//
+//        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
+//
+//        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
-            event.accept(EXAMPLE_BLOCK_ITEM);
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.insertAfter(Items.PHANTOM_MEMBRANE.getDefaultInstance(), PHOENIX_FEATHER.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(PHOENIX_FEATHER.get().getDefaultInstance(), JACKALOPE_ANTLERS.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(JACKALOPE_ANTLERS.get().getDefaultInstance(), UNICORN_HORN.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(UNICORN_HORN.get().getDefaultInstance(), TROLL_HEART.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
+//        // Do something when the server starts
+//        LOGGER.info("HELLO from server starting");
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -128,9 +162,22 @@ public class MysticalCreatures
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+//            // Some client setup code
+//            LOGGER.info("HELLO FROM CLIENT SETUP");
+//            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        }
+    }
+
+    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
+    public static class DataHandler {
+        @SubscribeEvent
+        public static void gatherData(GatherDataEvent.Client event) {
+            // tags first
+            event.createBlockAndItemTags(MyBlockTagProvider::new, MyItemTagProvider::new);
+            event.createProvider(MyBiomeTagProvider::new);
+            // misc
+            event.createProvider(MyLanguageProvider::new);
+            event.createProvider(MyModelProvider::new);
         }
     }
 }
