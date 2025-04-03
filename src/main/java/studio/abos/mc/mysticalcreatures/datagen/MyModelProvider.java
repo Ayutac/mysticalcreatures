@@ -8,12 +8,12 @@ import net.minecraft.data.PackOutput;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
 
 public class MyModelProvider extends ModelProvider {
-    public MyModelProvider(PackOutput output) {
+    public MyModelProvider(final PackOutput output) {
         super(output, MysticalCreatures.MODID);
     }
 
     @Override
-    protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
+    protected void registerModels(final BlockModelGenerators blockModels, final ItemModelGenerators itemModels) {
         itemModels.generateFlatItem(MysticalCreatures.PHOENIX_FEATHER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(MysticalCreatures.JACKALOPE_ANTLERS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(MysticalCreatures.UNICORN_HORN.get(), ModelTemplates.FLAT_ITEM);

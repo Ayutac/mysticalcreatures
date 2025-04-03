@@ -11,12 +11,12 @@ import java.util.concurrent.CompletableFuture;
 
 public class MyBiomeTagProvider extends BiomeTagsProvider {
 
-    public MyBiomeTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+    public MyBiomeTagProvider(final PackOutput output, final CompletableFuture<HolderLookup.Provider> provider) {
         super(output, provider, MysticalCreatures.MODID);
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    protected void addTags(final HolderLookup.Provider provider) {
         tag(MysticalCreatures.PHOENIX_SPAWNS_ON).add(Biomes.BASALT_DELTAS);
         tag(MysticalCreatures.JACKALOPE_SPAWNS_ON) // same as brown rabbits
                 .add(Biomes.FLOWER_FOREST)

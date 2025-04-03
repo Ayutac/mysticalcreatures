@@ -5,7 +5,7 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
 
 public class MyLanguageProvider extends LanguageProvider {
-    public MyLanguageProvider(PackOutput output) {
+    public MyLanguageProvider(final PackOutput output) {
         super(output, MysticalCreatures.MODID, "en_us");
     }
 
