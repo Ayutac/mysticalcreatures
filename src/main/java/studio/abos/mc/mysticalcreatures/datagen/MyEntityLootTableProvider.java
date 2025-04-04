@@ -38,7 +38,7 @@ public class MyEntityLootTableProvider extends EntityLootSubProvider {
     @Override
     public void generate() {
         // phoenix drop
-        this.add(MysticalCreatures.PHOENIX_ENTITY.get(), LootTable.lootTable()
+        add(MysticalCreatures.PHOENIX_ENTITY.get(), LootTable.lootTable()
                 .setRandomSequence(MysticalCreatures.of(Name.PHOENIX))
                 .withPool(LootPool.lootPool()
                         .name(Name.PHOENIX_FEATHER)
@@ -48,7 +48,7 @@ public class MyEntityLootTableProvider extends EntityLootSubProvider {
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(0,1)))
                                 .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0,1)).setLimit(2)))));
         // jackalope drop
-        this.add(MysticalCreatures.JACKALOPE_ENTITY.get(), LootTable.lootTable()
+        add(MysticalCreatures.JACKALOPE_ENTITY.get(), LootTable.lootTable()
                 .setRandomSequence(MysticalCreatures.of(Name.JACKALOPE))
                 .withPool(LootPool.lootPool()
                         .name("rabbit_hide")
@@ -66,7 +66,7 @@ public class MyEntityLootTableProvider extends EntityLootSubProvider {
                                 .when(() -> new LootItemRandomChanceWithEnchantedBonusCondition(
                                         0.1f, LevelBasedValue.perLevel(0.13f, 0.03f), registries.holderOrThrow(Enchantments.LOOTING))))));
         // unicorn drop
-        this.add(MysticalCreatures.UNICORN_ENTITY.get(), LootTable.lootTable()
+        add(MysticalCreatures.UNICORN_ENTITY.get(), LootTable.lootTable()
                 .setRandomSequence(MysticalCreatures.of(Name.UNICORN))
                 .withPool(LootPool.lootPool()
                         .name("leather")
@@ -84,7 +84,7 @@ public class MyEntityLootTableProvider extends EntityLootSubProvider {
                                 .when(() -> new LootItemRandomChanceWithEnchantedBonusCondition(
                                         0.09375f, LevelBasedValue.perLevel(0.125f, 0.03125f), registries.holderOrThrow(Enchantments.LOOTING))))));
         // unicorn drop
-        this.add(MysticalCreatures.TROLL_ENTITY.get(), LootTable.lootTable()
+        add(MysticalCreatures.TROLL_ENTITY.get(), LootTable.lootTable()
                 .setRandomSequence(MysticalCreatures.of(Name.TROLL))
                 .withPool(LootPool.lootPool()
                         .name(Name.TROLL_HEART)
