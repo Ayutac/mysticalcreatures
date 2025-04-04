@@ -1,6 +1,7 @@
 package studio.abos.mc.mysticalcreatures;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -45,6 +46,7 @@ import studio.abos.mc.mysticalcreatures.client.render.entity.JackalopeRenderer;
 import studio.abos.mc.mysticalcreatures.client.render.entity.PhoenixRenderer;
 import studio.abos.mc.mysticalcreatures.client.render.entity.TrollRenderer;
 import studio.abos.mc.mysticalcreatures.client.render.entity.UnicornRenderer;
+import studio.abos.mc.mysticalcreatures.datagen.MyAdvancementProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyBiomeTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyBlockTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyItemTagProvider;
@@ -55,6 +57,7 @@ import studio.abos.mc.mysticalcreatures.entity.PhoenixEntity;
 import studio.abos.mc.mysticalcreatures.entity.TrollEntity;
 import studio.abos.mc.mysticalcreatures.entity.UnicornEntity;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -253,6 +256,8 @@ public class MysticalCreatures
             // misc
             event.createProvider(MyLanguageProvider::new);
             event.createProvider(MyModelProvider::new);
+            event.createProvider((output, lookupProvider) ->
+                    new AdvancementProvider(output, lookupProvider, List.of(new MyAdvancementProvider())));
         }
     }
 }

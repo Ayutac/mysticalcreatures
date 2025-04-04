@@ -1,0 +1,67 @@
+{
+  "criteria": {
+    "pickup_jackalope_antlers": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mysticalcreatures:jackalope_antlers"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pickup_phoenix_feather": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mysticalcreatures:phoenix_feather"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pickup_troll_heart": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mysticalcreatures:troll_heart"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pickup_unicorn_horn": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mysticalcreatures:unicorn_horn"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:block/dirt",
+    "description": {
+      "translate": "advancements.mysticalcreatures.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "mysticalcreatures:phoenix_feather"
+    },
+    "title": {
+      "translate": "advancements.mysticalcreatures.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "pickup_phoenix_feather",
+      "pickup_jackalope_antlers",
+      "pickup_unicorn_horn",
+      "pickup_troll_heart"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
