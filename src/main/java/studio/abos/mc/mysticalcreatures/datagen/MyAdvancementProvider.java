@@ -4,8 +4,9 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementType;
-import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.BredAnimalsTrigger;
+import net.minecraft.advancements.critereon.DamagePredicate;
+import net.minecraft.advancements.critereon.EntityHurtPlayerTrigger;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.EntityTypePredicate;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -40,7 +41,10 @@ public class MyAdvancementProvider implements AdvancementSubProvider {
         final var killJackalope = KilledTrigger.TriggerInstance.playerKilledEntity(Optional.of(entityType(MysticalCreatures.JACKALOPE_ENTITY.get())));
         final var killUnicorn = KilledTrigger.TriggerInstance.playerKilledEntity(Optional.of(entityType(MysticalCreatures.UNICORN_ENTITY.get())));
         final var killTroll = KilledTrigger.TriggerInstance.playerKilledEntity(Optional.of(entityType(MysticalCreatures.TROLL_ENTITY.get())));
-        
+        // getting hurt triggers
+        final var hurtByUnicorn = EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer(DamagePredicate.Builder.damageInstance().sourceEntity(entityType(MysticalCreatures.UNICORN_ENTITY.get())));
+        final var hurtByTroll = EntityHurtPlayerTrigger.TriggerInstance.entityHurtPlayer(DamagePredicate.Builder.damageInstance().sourceEntity(entityType(MysticalCreatures.TROLL_ENTITY.get())));
+
         // advancements
         final AdvancementHolder root = Advancement.Builder.advancement()
                 .display(
@@ -63,6 +67,8 @@ public class MyAdvancementProvider implements AdvancementSubProvider {
                 .addCriterion(Name.KILL_JACKALOPE, killJackalope)
                 .addCriterion(Name.KILL_UNICORN, killUnicorn)
                 .addCriterion(Name.KILL_TROLL, killTroll)
+                .addCriterion(Name.HURT_BY_UNICORN, hurtByUnicorn)
+                .addCriterion(Name.HURT_BY_TROLL, hurtByTroll)
                 .requirements(AdvancementRequirements.anyOf(List.of(
                         Name.PICKUP_PHOENIX_FEATHER,
                         Name.PICKUP_JACKALOPE_ANTLERS,
@@ -75,7 +81,9 @@ public class MyAdvancementProvider implements AdvancementSubProvider {
                         Name.KILL_PHOENIX,
                         Name.KILL_JACKALOPE,
                         Name.KILL_UNICORN,
-                        Name.KILL_TROLL)))
+                        Name.KILL_TROLL,
+                        Name.HURT_BY_UNICORN,
+                        Name.HURT_BY_TROLL)))
                 .save(consumer, MysticalCreatures.of(Name.ADV_ROOT));
         Advancement.Builder.advancement()
                 .parent(root)

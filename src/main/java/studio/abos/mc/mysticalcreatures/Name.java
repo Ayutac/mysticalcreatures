@@ -37,4 +37,7 @@ public interface Name {
     String KILL_JACKALOPE = KILL_ + JACKALOPE;
     String KILL_UNICORN = KILL_ + UNICORN;
     String KILL_TROLL = KILL_ + TROLL;
+    String HURT_BY_ = "hurt_by_";
+    String HURT_BY_UNICORN = HURT_BY_ + UNICORN;
+    String HURT_BY_TROLL = HURT_BY_ + TROLL;
 }

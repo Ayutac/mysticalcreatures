@@ -56,6 +56,26 @@
       },
       "trigger": "minecraft:bred_animals"
     },
+    "hurt_by_troll": {
+      "conditions": {
+        "damage": {
+          "source_entity": {
+            "type": "mysticalcreatures:unicorn"
+          }
+        }
+      },
+      "trigger": "minecraft:entity_hurt_player"
+    },
+    "hurt_by_unicorn": {
+      "conditions": {
+        "damage": {
+          "source_entity": {
+            "type": "mysticalcreatures:unicorn"
+          }
+        }
+      },
+      "trigger": "minecraft:entity_hurt_player"
+    },
     "kill_jackalope": {
       "conditions": {
         "entity": [
@@ -180,7 +200,9 @@
       "kill_phoenix",
       "kill_jackalope",
       "kill_unicorn",
-      "kill_troll"
+      "kill_troll",
+      "hurt_by_unicorn",
+      "hurt_by_troll"
     ]
   ],
   "sends_telemetry_event": true
