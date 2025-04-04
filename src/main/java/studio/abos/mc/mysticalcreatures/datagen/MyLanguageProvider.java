@@ -3,15 +3,16 @@ package studio.abos.mc.mysticalcreatures.datagen;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
+import studio.abos.mc.mysticalcreatures.Name;
 
 public class MyLanguageProvider extends LanguageProvider {
     public MyLanguageProvider(final PackOutput output) {
-        super(output, MysticalCreatures.MODID, "en_us");
+        super(output, Name.MODID, "en_us");
     }
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.mysticalcreatures", "Mystical Creatures");
+        add("itemGroup." + Name.MODID, "Mystical Creatures");
 
         addItem(MysticalCreatures.PHOENIX_SPAWN_EGG, "Phoenix Spawn Egg");
         addItem(MysticalCreatures.PHOENIX_FEATHER, "Phoenix Feather");
@@ -23,5 +24,8 @@ public class MyLanguageProvider extends LanguageProvider {
         addItem(MysticalCreatures.TROLL_HEART, "Troll Heart");
 
         addEntityType(MysticalCreatures.PHOENIX_ENTITY, "Phoenix");
+        addEntityType(MysticalCreatures.JACKALOPE_ENTITY, "Jackalope");
+        addEntityType(MysticalCreatures.UNICORN_ENTITY, "Unicorn");
+        addEntityType(MysticalCreatures.TROLL_ENTITY, "Troll");
     }
 }

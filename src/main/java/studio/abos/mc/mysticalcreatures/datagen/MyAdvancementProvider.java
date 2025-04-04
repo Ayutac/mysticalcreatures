@@ -10,6 +10,7 @@ import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
+import studio.abos.mc.mysticalcreatures.Name;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -39,11 +40,11 @@ public class MyAdvancementProvider implements AdvancementSubProvider {
     }
 
     public static String title(final String name) {
-        return String.format("advancements.%s.%s.title", MysticalCreatures.MODID, name);
+        return String.format("advancements.%s.%s.title", Name.MODID, name);
     }
 
     public static String desc(final String desc) {
-        return String.format("advancements.%s.%s.description", MysticalCreatures.MODID, desc);
+        return String.format("advancements.%s.%s.description", Name.MODID, desc);
     }
 
 }

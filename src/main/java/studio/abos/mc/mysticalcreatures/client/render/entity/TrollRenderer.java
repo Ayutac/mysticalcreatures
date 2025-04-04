@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
+import studio.abos.mc.mysticalcreatures.Name;
 import studio.abos.mc.mysticalcreatures.client.model.entity.TrollModel;
 import studio.abos.mc.mysticalcreatures.client.render.state.TrollRenderState;
 import studio.abos.mc.mysticalcreatures.entity.TrollEntity;
@@ -19,7 +20,7 @@ public class TrollRenderer extends AgeableMobRenderer<TrollEntity, TrollRenderSt
 
     @Override
     public ResourceLocation getTextureLocation(TrollRenderState TrollRenderState) {
-        return MysticalCreatures.of("troll_entity");
+        return MysticalCreatures.of(Name.TROLL);
     }
 
     @Override

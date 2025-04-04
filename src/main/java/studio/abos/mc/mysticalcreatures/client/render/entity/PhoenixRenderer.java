@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
+import studio.abos.mc.mysticalcreatures.Name;
 import studio.abos.mc.mysticalcreatures.client.model.entity.PhoenixModel;
 import studio.abos.mc.mysticalcreatures.client.render.state.PhoenixRenderState;
 import studio.abos.mc.mysticalcreatures.entity.PhoenixEntity;
@@ -20,7 +21,7 @@ public class PhoenixRenderer extends AgeableMobRenderer<PhoenixEntity, PhoenixRe
 
     @Override
     public ResourceLocation getTextureLocation(PhoenixRenderState phoenixRenderState) {
-        return MysticalCreatures.of("phoenix_entity");
+        return MysticalCreatures.of(Name.PHOENIX);
     }
 
     @Override

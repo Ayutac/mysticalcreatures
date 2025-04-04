@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
+import studio.abos.mc.mysticalcreatures.Name;
 import studio.abos.mc.mysticalcreatures.client.model.entity.JackalopeModel;
 import studio.abos.mc.mysticalcreatures.client.render.state.JackalopeRenderState;
 import studio.abos.mc.mysticalcreatures.entity.JackalopeEntity;
@@ -20,7 +21,7 @@ public class JackalopeRenderer extends AgeableMobRenderer<JackalopeEntity, Jacka
 
     @Override
     public ResourceLocation getTextureLocation(JackalopeRenderState JackalopeRenderState) {
-        return MysticalCreatures.of("jackalope_entity");
+        return MysticalCreatures.of(Name.JACKALOPE);
     }
 
     @Override

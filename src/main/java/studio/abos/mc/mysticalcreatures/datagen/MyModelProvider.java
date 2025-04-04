@@ -6,10 +6,11 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.data.PackOutput;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
+import studio.abos.mc.mysticalcreatures.Name;
 
 public class MyModelProvider extends ModelProvider {
     public MyModelProvider(final PackOutput output) {
-        super(output, MysticalCreatures.MODID);
+        super(output, Name.MODID);
     }
 
     @Override

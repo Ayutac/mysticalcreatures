@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
+import studio.abos.mc.mysticalcreatures.Name;
 import studio.abos.mc.mysticalcreatures.client.model.entity.UnicornModel;
 import studio.abos.mc.mysticalcreatures.client.render.state.UnicornRenderState;
 import studio.abos.mc.mysticalcreatures.entity.UnicornEntity;
@@ -19,7 +20,7 @@ public class UnicornRenderer extends AgeableMobRenderer<UnicornEntity, UnicornRe
 
     @Override
     public ResourceLocation getTextureLocation(UnicornRenderState UnicornRenderState) {
-        return MysticalCreatures.of("jackalope_entity");
+        return MysticalCreatures.of(Name.UNICORN);
     }
 
     @Override

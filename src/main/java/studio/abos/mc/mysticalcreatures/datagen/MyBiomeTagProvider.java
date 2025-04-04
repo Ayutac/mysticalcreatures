@@ -6,13 +6,14 @@ import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
+import studio.abos.mc.mysticalcreatures.Name;
 
 import java.util.concurrent.CompletableFuture;
 
 public class MyBiomeTagProvider extends BiomeTagsProvider {
 
     public MyBiomeTagProvider(final PackOutput output, final CompletableFuture<HolderLookup.Provider> provider) {
-        super(output, provider, MysticalCreatures.MODID);
+        super(output, provider, Name.MODID);
     }
 
     @Override

@@ -61,77 +61,78 @@ import java.util.List;
 import java.util.function.Supplier;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(MysticalCreatures.MODID)
+@Mod(Name.MODID)
 public class MysticalCreatures
 {
-    public static final String MODID = "mysticalcreatures";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
-    public static final DeferredRegister.Entities ENTITY_TYPES = DeferredRegister.createEntities(MODID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Name.MODID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Name.MODID);
+    public static final DeferredRegister.Entities ENTITY_TYPES = DeferredRegister.createEntities(Name.MODID);
 
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Name.MODID);
 
-    public static final TagKey<Item> PHOENIX_FOOD = TagKey.create(Registries.ITEM, of("phoenix_food"));
-    public static final TagKey<Item> JACKALOPE_FOOD = TagKey.create(Registries.ITEM, of("jackalope_food"));
-    public static final TagKey<Item> UNICORN_FOOD = TagKey.create(Registries.ITEM, of("unicorn_food"));
-    public static final TagKey<Item> TROLL_FOOD = TagKey.create(Registries.ITEM, of("troll_food"));
+    private static final String _FOOD = "_food";
+    public static final TagKey<Item> PHOENIX_FOOD = TagKey.create(Registries.ITEM, of(Name.PHOENIX + _FOOD));
+    public static final TagKey<Item> JACKALOPE_FOOD = TagKey.create(Registries.ITEM, of(Name.JACKALOPE + _FOOD));
+    public static final TagKey<Item> UNICORN_FOOD = TagKey.create(Registries.ITEM, of(Name.UNICORN + _FOOD));
+    public static final TagKey<Item> TROLL_FOOD = TagKey.create(Registries.ITEM, of(Name.TROLL + _FOOD));
 
-    public static final TagKey<Biome> PHOENIX_SPAWNS_ON = TagKey.create(Registries.BIOME, of("phoenix_spawns_on"));
-    public static final TagKey<Biome> JACKALOPE_SPAWNS_ON = TagKey.create(Registries.BIOME, of("jackalope_spawns_on"));
-    public static final TagKey<Biome> UNICORN_SPAWNS_ON = TagKey.create(Registries.BIOME, of("unicorn_spawns_on"));
-    public static final TagKey<Biome> TROLL_SPAWNS_ON = TagKey.create(Registries.BIOME, of("troll_spawns_on"));
+    private static final String _SPAWNS_ON = "_spawns_on";
+    public static final TagKey<Biome> PHOENIX_SPAWNS_ON = TagKey.create(Registries.BIOME, of(Name.PHOENIX + _SPAWNS_ON));
+    public static final TagKey<Biome> JACKALOPE_SPAWNS_ON = TagKey.create(Registries.BIOME, of(Name.JACKALOPE + _SPAWNS_ON));
+    public static final TagKey<Biome> UNICORN_SPAWNS_ON = TagKey.create(Registries.BIOME, of(Name.UNICORN + _SPAWNS_ON));
+    public static final TagKey<Biome> TROLL_SPAWNS_ON = TagKey.create(Registries.BIOME, of(Name.TROLL + _SPAWNS_ON));
 
     // Creates a new Block with the id "mysticalcreatures:example_block", combining the namespace and path
     // public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
     // Creates a new BlockItem with the id "mysticalcreatures:example_block", combining the namespace and path
     // public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
 
-    public static final DeferredItem<Item> PHOENIX_FEATHER = ITEMS.registerSimpleItem("phoenix_feather", new Item.Properties().rarity(Rarity.RARE).fireResistant());
-    public static final DeferredItem<Item> JACKALOPE_ANTLERS = ITEMS.registerSimpleItem("jackalope_antlers", new Item.Properties().rarity(Rarity.RARE));
-    public static final DeferredItem<Item> UNICORN_HORN = ITEMS.registerSimpleItem("unicorn_horn", new Item.Properties().rarity(Rarity.RARE));
-    public static final DeferredItem<Item> TROLL_HEART = ITEMS.registerSimpleItem("troll_heart", new Item.Properties().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> PHOENIX_FEATHER = ITEMS.registerSimpleItem(Name.PHOENIX_FEATHER, new Item.Properties().rarity(Rarity.RARE).fireResistant());
+    public static final DeferredItem<Item> JACKALOPE_ANTLERS = ITEMS.registerSimpleItem(Name.JACKALOPE_ANTLERS, new Item.Properties().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> UNICORN_HORN = ITEMS.registerSimpleItem(Name.UNICORN_HORN, new Item.Properties().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> TROLL_HEART = ITEMS.registerSimpleItem(Name.TROLL_HEART, new Item.Properties().rarity(Rarity.RARE));
 
-    public static final Supplier<EntityType<PhoenixEntity>> PHOENIX_ENTITY = ENTITY_TYPES.register("phoenix",
+    public static final Supplier<EntityType<PhoenixEntity>> PHOENIX_ENTITY = ENTITY_TYPES.register(Name.PHOENIX,
             () -> EntityType.Builder.of(PhoenixEntity::new, MobCategory.CREATURE)
                     .sized(1f, 1f)
                     .fireImmune()
                     .clientTrackingRange(8)
-                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of("phoenix"))));
-    public static final Supplier<EntityType<JackalopeEntity>> JACKALOPE_ENTITY = ENTITY_TYPES.register("jackalope",
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.PHOENIX))));
+    public static final Supplier<EntityType<JackalopeEntity>> JACKALOPE_ENTITY = ENTITY_TYPES.register(Name.JACKALOPE,
             () -> EntityType.Builder.of(JackalopeEntity::new, MobCategory.CREATURE)
                     .sized(1f, 1f)
                     .clientTrackingRange(8)
-                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of("jackalope"))));
-    public static final Supplier<EntityType<UnicornEntity>> UNICORN_ENTITY = ENTITY_TYPES.register("unicorn",
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.JACKALOPE))));
+    public static final Supplier<EntityType<UnicornEntity>> UNICORN_ENTITY = ENTITY_TYPES.register(Name.UNICORN,
             () -> EntityType.Builder.of(UnicornEntity::new, MobCategory.MONSTER)
                     .sized(1f, 1f)
                     .clientTrackingRange(8)
-                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of("unicorn"))));
-    public static final Supplier<EntityType<TrollEntity>> TROLL_ENTITY = ENTITY_TYPES.register("troll",
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.UNICORN))));
+    public static final Supplier<EntityType<TrollEntity>> TROLL_ENTITY = ENTITY_TYPES.register(Name.TROLL,
             () -> EntityType.Builder.of(TrollEntity::new, MobCategory.MONSTER)
                     .sized(1f, 1f)
                     .clientTrackingRange(8)
-                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of("troll"))));
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.TROLL))));
 
-    public static final DeferredItem<SpawnEggItem> PHOENIX_SPAWN_EGG = ITEMS.registerItem("phoenix_spawn_egg",
+    private static final String _SPAWN_EGG = "_spawn_egg";
+    public static final DeferredItem<SpawnEggItem> PHOENIX_SPAWN_EGG = ITEMS.registerItem(Name.PHOENIX + _SPAWN_EGG,
             properties -> new SpawnEggItem(PHOENIX_ENTITY.get(), properties));
-    public static final DeferredItem<SpawnEggItem> JACKALOPE_SPAWN_EGG = ITEMS.registerItem("jackalope_spawn_egg",
+    public static final DeferredItem<SpawnEggItem> JACKALOPE_SPAWN_EGG = ITEMS.registerItem(Name.JACKALOPE + _SPAWN_EGG,
             properties -> new SpawnEggItem(JACKALOPE_ENTITY.get(), properties));
-    public static final DeferredItem<SpawnEggItem> UNICORN_SPAWN_EGG = ITEMS.registerItem("unicorn_spawn_egg",
+    public static final DeferredItem<SpawnEggItem> UNICORN_SPAWN_EGG = ITEMS.registerItem(Name.UNICORN + _SPAWN_EGG,
             properties -> new SpawnEggItem(UNICORN_ENTITY.get(), properties));
-    public static final DeferredItem<SpawnEggItem> TROLL_SPAWN_EGG = ITEMS.registerItem("troll_spawn_egg",
+    public static final DeferredItem<SpawnEggItem> TROLL_SPAWN_EGG = ITEMS.registerItem(Name.TROLL + _SPAWN_EGG,
             properties -> new SpawnEggItem(TROLL_ENTITY.get(), properties));
 
-    public static final ModelLayerLocation PHOENIX_LAYER = new ModelLayerLocation(of("phoenix"), "head");
-    public static final ModelLayerLocation JACKALOPE_LAYER = new ModelLayerLocation(of("jackalope"), "head");
-    public static final ModelLayerLocation UNICORN_LAYER = new ModelLayerLocation(of("unicorn"), "head");
-    public static final ModelLayerLocation TROLL_LAYER = new ModelLayerLocation(of("troll"), "head");
+    public static final ModelLayerLocation PHOENIX_LAYER = new ModelLayerLocation(of(Name.PHOENIX), "head");
+    public static final ModelLayerLocation JACKALOPE_LAYER = new ModelLayerLocation(of(Name.JACKALOPE), "head");
+    public static final ModelLayerLocation UNICORN_LAYER = new ModelLayerLocation(of(Name.UNICORN), "head");
+    public static final ModelLayerLocation TROLL_LAYER = new ModelLayerLocation(of(Name.TROLL), "head");
 
-    // Creates a creative tab with the id "mysticalcreatures:example_tab" for the example item, that is placed after the combat tab
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("mysticalcreatures", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.mysticalcreatures")) //The language key for the title of your CreativeModeTab
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register(Name.MODID, () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup." + Name.MODID)) //The language key for the title of your CreativeModeTab
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> UNICORN_HORN.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
@@ -174,7 +175,7 @@ public class MysticalCreatures
     }
 
     public static ResourceLocation of(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, name);
+        return ResourceLocation.fromNamespaceAndPath(Name.MODID, name);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -220,7 +221,7 @@ public class MysticalCreatures
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = Name.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
@@ -246,7 +247,7 @@ public class MysticalCreatures
     }
 
     // datagen
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(modid = Name.MODID, bus = EventBusSubscriber.Bus.MOD)
     public static class DataHandler {
         @SubscribeEvent
         public static void gatherData(GatherDataEvent.Client event) {
