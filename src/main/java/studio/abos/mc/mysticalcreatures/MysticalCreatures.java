@@ -112,6 +112,15 @@ public class MysticalCreatures
     public static final Holder<Potion> PHOENIX_POTION_STRONG = POTIONS.register(Name.PHOENIX + _STRONG, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.REGENERATION, 11 * 20 + 5, 1),
             new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2 * 60 * 20)));
+    public static final Holder<Potion> JACKALOPE_POTION = POTIONS.register(Name.JACKALOPE, name -> new Potion(name.getPath(),
+            new MobEffectInstance(MobEffects.SPEED, 2 * 60 * 20),
+            new MobEffectInstance(MobEffects.JUMP_BOOST, 2 * 60 * 20)));
+    public static final Holder<Potion> JACKALOPE_POTION_LONG = POTIONS.register(Name.JACKALOPE + _LONG, name -> new Potion(name.getPath(),
+            new MobEffectInstance(MobEffects.SPEED, 4 * 60 * 20),
+            new MobEffectInstance(MobEffects.JUMP_BOOST, 4 * 60 * 20)));
+    public static final Holder<Potion> JACKALOPE_POTION_STRONG = POTIONS.register(Name.JACKALOPE + _STRONG, name -> new Potion(name.getPath(),
+            new MobEffectInstance(MobEffects.SPEED, 60 * 20, 1),
+            new MobEffectInstance(MobEffects.JUMP_BOOST, 60 * 20, 1)));
 
     public static final Supplier<EntityType<PhoenixEntity>> PHOENIX_ENTITY = ENTITY_TYPES.register(Name.PHOENIX,
             () -> EntityType.Builder.of(PhoenixEntity::new, MobCategory.CREATURE)
@@ -205,16 +214,6 @@ public class MysticalCreatures
 //        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
-    @SubscribeEvent
-    public void registerBrewingRecipes(final RegisterBrewingRecipesEvent event) {
-        PotionBrewing.Builder builder = event.getBuilder();
-
-        // Will add brewing recipes for all container potions (e.g. potion, splash potion, lingering potion)
-        builder.addMix(Potions.AWKWARD, PHOENIX_FEATHER.get(), PHOENIX_POTION);
-        builder.addMix(PHOENIX_POTION, Items.REDSTONE, PHOENIX_POTION_LONG);
-        builder.addMix(PHOENIX_POTION, Items.GLOWSTONE, PHOENIX_POTION_STRONG);
-    }
-
     // Add the example block item to the building blocks tab
     private void addCreative(final BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
@@ -238,19 +237,27 @@ public class MysticalCreatures
         event.put(TROLL_ENTITY.get(), TrollEntity.createTrollAttributes().build());
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-//        // Do something when the server starts
 //        LOGGER.info("HELLO from server starting");
     }
 
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+    @SubscribeEvent
+    public void registerBrewingRecipes(final RegisterBrewingRecipesEvent event) {
+        PotionBrewing.Builder builder = event.getBuilder();
+        // will add brewing recipes for all container potions (e.g. potion, splash potion, lingering potion)
+        builder.addMix(Potions.AWKWARD, PHOENIX_FEATHER.get(), PHOENIX_POTION);
+        builder.addMix(PHOENIX_POTION, Items.REDSTONE, PHOENIX_POTION_LONG);
+        builder.addMix(PHOENIX_POTION, Items.GLOWSTONE, PHOENIX_POTION_STRONG);
+        builder.addMix(Potions.AWKWARD, JACKALOPE_ANTLERS.get(), JACKALOPE_POTION);
+        builder.addMix(JACKALOPE_POTION, Items.REDSTONE, JACKALOPE_POTION_LONG);
+        builder.addMix(JACKALOPE_POTION, Items.GLOWSTONE, JACKALOPE_POTION_STRONG);
+    }
+
     @EventBusSubscriber(modid = Name.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-//            // Some client setup code
 //            LOGGER.info("HELLO FROM CLIENT SETUP");
 //            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }

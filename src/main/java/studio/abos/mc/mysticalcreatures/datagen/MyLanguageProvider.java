@@ -24,6 +24,7 @@ public class MyLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         add("itemGroup." + Name.MODID, "Mystical Creatures");
 
+        // regular items and spawn eggs
         addItem(MysticalCreatures.PHOENIX_SPAWN_EGG, "Phoenix Spawn Egg");
         addItem(MysticalCreatures.PHOENIX_FEATHER, "Phoenix Feather");
         addItem(MysticalCreatures.JACKALOPE_SPAWN_EGG, "Jackalope Spawn Egg");
@@ -33,6 +34,7 @@ public class MyLanguageProvider extends LanguageProvider {
         addItem(MysticalCreatures.TROLL_SPAWN_EGG, "Troll Spawn Egg");
         addItem(MysticalCreatures.TROLL_HEART, "Troll Heart");
 
+        // potions
         final String thePhoenixMaster = "the Phoenix Master";
         add(ITEM_MINECRAFT_POTION_EFFECT + Name.PHOENIX, POTION_OF + thePhoenixMaster);
         add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + Name.PHOENIX, SPLASH_POTION_OF + thePhoenixMaster);
@@ -46,12 +48,27 @@ public class MyLanguageProvider extends LanguageProvider {
         add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + Name.PHOENIX + MysticalCreatures._STRONG, SPLASH_POTION_OF + thePhoenixMaster);
         add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + Name.PHOENIX + MysticalCreatures._STRONG, LINGERING_POTION_OF + thePhoenixMaster);
         add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + Name.PHOENIX + MysticalCreatures._STRONG, ARROW_OF + thePhoenixMaster);
+        final String theJackalopeMaster = "the Jackalope Master";
+        add(ITEM_MINECRAFT_POTION_EFFECT + Name.JACKALOPE, POTION_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + Name.JACKALOPE, SPLASH_POTION_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + Name.JACKALOPE, LINGERING_POTION_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + Name.JACKALOPE, ARROW_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_POTION_EFFECT + Name.JACKALOPE + MysticalCreatures._LONG, POTION_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + Name.JACKALOPE + MysticalCreatures._LONG, SPLASH_POTION_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + Name.JACKALOPE + MysticalCreatures._LONG, LINGERING_POTION_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + Name.JACKALOPE + MysticalCreatures._LONG, ARROW_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_POTION_EFFECT + Name.JACKALOPE + MysticalCreatures._STRONG, POTION_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + Name.JACKALOPE + MysticalCreatures._STRONG, SPLASH_POTION_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + Name.JACKALOPE + MysticalCreatures._STRONG, LINGERING_POTION_OF + theJackalopeMaster);
+        add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + Name.JACKALOPE + MysticalCreatures._STRONG, ARROW_OF + theJackalopeMaster);
 
+        // entities
         addEntityType(MysticalCreatures.PHOENIX_ENTITY, "Phoenix");
         addEntityType(MysticalCreatures.JACKALOPE_ENTITY, "Jackalope");
         addEntityType(MysticalCreatures.UNICORN_ENTITY, "Unicorn");
         addEntityType(MysticalCreatures.TROLL_ENTITY, "Troll");
 
+        // advancements
         add(MyAdvancementProvider.title(Name.ADV_ROOT), "Mystical Creatures");
         add(MyAdvancementProvider.desc(Name.ADV_ROOT), "So mysterious!");
         add(MyAdvancementProvider.title(Name.ADV_BREEDER), "Breeder");
