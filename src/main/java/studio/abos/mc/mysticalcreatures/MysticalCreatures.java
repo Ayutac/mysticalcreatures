@@ -139,7 +139,7 @@ public class MysticalCreatures
             new MobEffectInstance(MobEffects.STRENGTH, 4 * 60 * 20)));
     public static final Holder<Potion> TROLL_POTION_STRONG = POTIONS.register(Name.TROLL + Name._STRONG, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.REGENERATION, 11 * 20 + 5, 1),
-            new MobEffectInstance(MobEffects.STRENGTH, 60 * 20)));
+            new MobEffectInstance(MobEffects.STRENGTH, 60 * 20, 1)));
 
     public static final Supplier<EntityType<PhoenixEntity>> PHOENIX_ENTITY = ENTITY_TYPES.register(Name.PHOENIX,
             () -> EntityType.Builder.of(PhoenixEntity::new, MobCategory.CREATURE)
