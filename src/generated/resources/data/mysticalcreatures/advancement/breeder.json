@@ -1,0 +1,90 @@
+{
+  "parent": "mysticalcreatures:root",
+  "criteria": {
+    "breed_jackalope": {
+      "conditions": {
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:jackalope"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:bred_animals"
+    },
+    "breed_phoenix": {
+      "conditions": {
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:phoenix"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:bred_animals"
+    },
+    "breed_troll": {
+      "conditions": {
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:troll"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:bred_animals"
+    },
+    "breed_unicorn": {
+      "conditions": {
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:unicorn"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:bred_animals"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.mysticalcreatures.breeder.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "mysticalcreatures:jackalope_antlers"
+    },
+    "title": {
+      "translate": "advancements.mysticalcreatures.breeder.title"
+    }
+  },
+  "requirements": [
+    [
+      "breed_phoenix"
+    ],
+    [
+      "breed_jackalope"
+    ],
+    [
+      "breed_unicorn"
+    ],
+    [
+      "breed_troll"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -27,5 +27,14 @@ public class MyLanguageProvider extends LanguageProvider {
         addEntityType(MysticalCreatures.JACKALOPE_ENTITY, "Jackalope");
         addEntityType(MysticalCreatures.UNICORN_ENTITY, "Unicorn");
         addEntityType(MysticalCreatures.TROLL_ENTITY, "Troll");
+
+        add(MyAdvancementProvider.title(Name.ADV_ROOT), "Mystical Creatures");
+        add(MyAdvancementProvider.desc(Name.ADV_ROOT), "So mysterious!");
+        add(MyAdvancementProvider.title(Name.ADV_BREEDER), "Breeder");
+        add(MyAdvancementProvider.desc(Name.ADV_BREEDER), "You saw too much.");
+        add(MyAdvancementProvider.title(Name.ADV_COLLECTOR), "Collector");
+        add(MyAdvancementProvider.desc(Name.ADV_COLLECTOR), "These are valuable!");
+        add(MyAdvancementProvider.title(Name.ADV_HUNTER), "Hunter");
+        add(MyAdvancementProvider.desc(Name.ADV_HUNTER), "Gotta kill 'em all!");
     }
 }

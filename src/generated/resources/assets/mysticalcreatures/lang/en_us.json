@@ -1,4 +1,12 @@
 {
+  "advancements.mysticalcreatures.breeder.description": "You saw too much.",
+  "advancements.mysticalcreatures.breeder.title": "Breeder",
+  "advancements.mysticalcreatures.collector.description": "These are valuable!",
+  "advancements.mysticalcreatures.collector.title": "Collector",
+  "advancements.mysticalcreatures.hunter.description": "Gotta kill 'em all!",
+  "advancements.mysticalcreatures.hunter.title": "Hunter",
+  "advancements.mysticalcreatures.root.description": "So mysterious!",
+  "advancements.mysticalcreatures.root.title": "Mystical Creatures",
   "entity.mysticalcreatures.jackalope": "Jackalope",
   "entity.mysticalcreatures.phoenix": "Phoenix",
   "entity.mysticalcreatures.troll": "Troll",

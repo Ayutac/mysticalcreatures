@@ -1,5 +1,117 @@
 {
   "criteria": {
+    "breed_jackalope": {
+      "conditions": {
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:jackalope"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:bred_animals"
+    },
+    "breed_phoenix": {
+      "conditions": {
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:phoenix"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:bred_animals"
+    },
+    "breed_troll": {
+      "conditions": {
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:troll"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:bred_animals"
+    },
+    "breed_unicorn": {
+      "conditions": {
+        "child": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:unicorn"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:bred_animals"
+    },
+    "kill_jackalope": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:jackalope"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "kill_phoenix": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:phoenix"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "kill_troll": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:troll"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "kill_unicorn": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:unicorn"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
     "pickup_jackalope_antlers": {
       "conditions": {
         "items": [
@@ -43,7 +155,7 @@
   },
   "display": {
     "announce_to_chat": false,
-    "background": "minecraft:block/dirt",
+    "background": "minecraft:block/amethyst_block",
     "description": {
       "translate": "advancements.mysticalcreatures.root.description"
     },
@@ -60,7 +172,15 @@
       "pickup_phoenix_feather",
       "pickup_jackalope_antlers",
       "pickup_unicorn_horn",
-      "pickup_troll_heart"
+      "pickup_troll_heart",
+      "breed_phoenix",
+      "breed_jackalope",
+      "breed_unicorn",
+      "breed_troll",
+      "kill_phoenix",
+      "kill_jackalope",
+      "kill_unicorn",
+      "kill_troll"
     ]
   ],
   "sends_telemetry_event": true

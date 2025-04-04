@@ -1,0 +1,90 @@
+{
+  "parent": "mysticalcreatures:root",
+  "criteria": {
+    "kill_jackalope": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:jackalope"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "kill_phoenix": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:phoenix"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "kill_troll": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:troll"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "kill_unicorn": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "mysticalcreatures:unicorn"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.mysticalcreatures.hunter.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "mysticalcreatures:troll_heart"
+    },
+    "title": {
+      "translate": "advancements.mysticalcreatures.hunter.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill_phoenix"
+    ],
+    [
+      "kill_jackalope"
+    ],
+    [
+      "kill_unicorn"
+    ],
+    [
+      "kill_troll"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
