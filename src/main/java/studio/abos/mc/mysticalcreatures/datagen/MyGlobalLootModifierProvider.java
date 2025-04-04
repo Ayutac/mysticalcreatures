@@ -31,19 +31,19 @@ public class MyGlobalLootModifierProvider extends GlobalLootModifierProvider {
                 new LootItemRandomChanceWithEnchantedBonusCondition(0.09375f, LevelBasedValue.perLevel(0.125f, 0.03125f),
                         registries.holderOrThrow(Enchantments.LOOTING))},
                 MysticalCreatures.PHOENIX_FEATHER.get()));
-        add(Name.LM_BASTION, new SimpleLootModifier(new LootItemCondition[]{
+        add(Name.LM_BASTION, new SimpleLootModifier(new LootItemCondition[] {
                 LootTableIdCondition.builder(ResourceLocation.fromNamespaceAndPath("minecraft", "chests/bastion_other")).build(),
                 LootItemRandomChanceCondition.randomChance(0.25f).build()},
                 MysticalCreatures.PHOENIX_FEATHER.get()));
-        add(Name.LM_OUTPOST, new SimpleLootModifier(new LootItemCondition[]{
+        add(Name.LM_OUTPOST, new SimpleLootModifier(new LootItemCondition[] {
                 LootTableIdCondition.builder(ResourceLocation.fromNamespaceAndPath("minecraft", "chests/pillager_outpost")).build(),
                 LootItemRandomChanceCondition.randomChance(0.333f).build()},
                 MysticalCreatures.JACKALOPE_ANTLERS.get()));
-        add(Name.LM_MANSION, new SimpleLootModifier(new LootItemCondition[]{
+        add(Name.LM_MANSION, new SimpleLootModifier(new LootItemCondition[] {
                 LootTableIdCondition.builder(ResourceLocation.fromNamespaceAndPath("minecraft", "chests/woodland_mansion")).build(),
                 LootItemRandomChanceCondition.randomChance(0.1f).build()},
                 MysticalCreatures.UNICORN_HORN.get()));
-        add(Name.LM_ANCIENT_CITY, new SimpleLootModifier(new LootItemCondition[]{
+        add(Name.LM_ANCIENT_CITY, new SimpleLootModifier(new LootItemCondition[] {
                 LootTableIdCondition.builder(ResourceLocation.fromNamespaceAndPath("minecraft", "chests/ancient_city_ice_box")).build(),
                 LootItemRandomChanceCondition.randomChance(0.25f).build()},
                 MysticalCreatures.TROLL_HEART.get()));
