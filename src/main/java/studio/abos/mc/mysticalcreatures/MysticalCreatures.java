@@ -101,33 +101,31 @@ public class MysticalCreatures
     public static final DeferredItem<Item> UNICORN_HORN = ITEMS.registerSimpleItem(Name.UNICORN_HORN, new Item.Properties());
     public static final DeferredItem<Item> TROLL_HEART = ITEMS.registerSimpleItem(Name.TROLL_HEART, new Item.Properties());
 
-    public static final String _LONG = "_long";
-    public static final String _STRONG = "_strong";
     public static final Holder<Potion> PHOENIX_POTION = POTIONS.register(Name.PHOENIX, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.REGENERATION, 22 * 20 + 10),
             new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2 * 60 * 20)));
-    public static final Holder<Potion> PHOENIX_POTION_LONG = POTIONS.register(Name.PHOENIX + _LONG, name -> new Potion(name.getPath(),
+    public static final Holder<Potion> PHOENIX_POTION_LONG = POTIONS.register(Name.PHOENIX + Name._LONG, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.REGENERATION, 45 * 20),
             new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 4 * 60 * 20)));
-    public static final Holder<Potion> PHOENIX_POTION_STRONG = POTIONS.register(Name.PHOENIX + _STRONG, name -> new Potion(name.getPath(),
+    public static final Holder<Potion> PHOENIX_POTION_STRONG = POTIONS.register(Name.PHOENIX + Name._STRONG, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.REGENERATION, 11 * 20 + 5, 1),
             new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2 * 60 * 20)));
     public static final Holder<Potion> JACKALOPE_POTION = POTIONS.register(Name.JACKALOPE, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.SPEED, 2 * 60 * 20),
             new MobEffectInstance(MobEffects.JUMP_BOOST, 2 * 60 * 20)));
-    public static final Holder<Potion> JACKALOPE_POTION_LONG = POTIONS.register(Name.JACKALOPE + _LONG, name -> new Potion(name.getPath(),
+    public static final Holder<Potion> JACKALOPE_POTION_LONG = POTIONS.register(Name.JACKALOPE + Name._LONG, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.SPEED, 4 * 60 * 20),
             new MobEffectInstance(MobEffects.JUMP_BOOST, 4 * 60 * 20)));
-    public static final Holder<Potion> JACKALOPE_POTION_STRONG = POTIONS.register(Name.JACKALOPE + _STRONG, name -> new Potion(name.getPath(),
+    public static final Holder<Potion> JACKALOPE_POTION_STRONG = POTIONS.register(Name.JACKALOPE + Name._STRONG, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.SPEED, 60 * 20, 1),
             new MobEffectInstance(MobEffects.JUMP_BOOST, 60 * 20, 1)));
     public static final Holder<Potion> TROLL_POTION = POTIONS.register(Name.TROLL, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.REGENERATION, 22 * 20 + 10),
             new MobEffectInstance(MobEffects.STRENGTH, 2 * 60 * 20)));
-    public static final Holder<Potion> TROLL_POTION_LONG = POTIONS.register(Name.TROLL + _LONG, name -> new Potion(name.getPath(),
+    public static final Holder<Potion> TROLL_POTION_LONG = POTIONS.register(Name.TROLL + Name._LONG, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.REGENERATION, 45 * 20),
             new MobEffectInstance(MobEffects.STRENGTH, 4 * 60 * 20)));
-    public static final Holder<Potion> TROLL_POTION_STRONG = POTIONS.register(Name.TROLL + _STRONG, name -> new Potion(name.getPath(),
+    public static final Holder<Potion> TROLL_POTION_STRONG = POTIONS.register(Name.TROLL + Name._STRONG, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.REGENERATION, 11 * 20 + 5, 1),
             new MobEffectInstance(MobEffects.STRENGTH, 60 * 20)));
 

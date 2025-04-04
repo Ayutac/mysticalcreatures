@@ -1,0 +1,105 @@
+{
+  "parent": "mysticalcreatures:root",
+  "criteria": {
+    "brewed_jackalope": {
+      "conditions": {
+        "potion": "mysticalcreatures:jackalope"
+      },
+      "trigger": "minecraft:brewed_potion"
+    },
+    "brewed_jackalope_long": {
+      "conditions": {
+        "potion": "mysticalcreatures:jackalope_long"
+      },
+      "trigger": "minecraft:brewed_potion"
+    },
+    "brewed_jackalope_strong": {
+      "conditions": {
+        "potion": "mysticalcreatures:jackalope_strong"
+      },
+      "trigger": "minecraft:brewed_potion"
+    },
+    "brewed_phoenix": {
+      "conditions": {
+        "potion": "mysticalcreatures:phoenix"
+      },
+      "trigger": "minecraft:brewed_potion"
+    },
+    "brewed_phoenix_long": {
+      "conditions": {
+        "potion": "mysticalcreatures:phoenix_long"
+      },
+      "trigger": "minecraft:brewed_potion"
+    },
+    "brewed_phoenix_strong": {
+      "conditions": {
+        "potion": "mysticalcreatures:phoenix_strong"
+      },
+      "trigger": "minecraft:brewed_potion"
+    },
+    "brewed_troll": {
+      "conditions": {
+        "potion": "mysticalcreatures:troll"
+      },
+      "trigger": "minecraft:brewed_potion"
+    },
+    "brewed_troll_long": {
+      "conditions": {
+        "potion": "mysticalcreatures:troll_long"
+      },
+      "trigger": "minecraft:brewed_potion"
+    },
+    "brewed_troll_strong": {
+      "conditions": {
+        "potion": "mysticalcreatures:troll_strong"
+      },
+      "trigger": "minecraft:brewed_potion"
+    },
+    "brewed_unicorn": {
+      "conditions": {
+        "potion": "minecraft:luck"
+      },
+      "trigger": "minecraft:brewed_potion"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.mysticalcreatures.alchemist.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:luck"
+        }
+      },
+      "count": 1,
+      "id": "minecraft:potion"
+    },
+    "title": {
+      "translate": "advancements.mysticalcreatures.alchemist.title"
+    }
+  },
+  "requirements": [
+    [
+      "brewed_phoenix",
+      "brewed_phoenix_long",
+      "brewed_phoenix_strong"
+    ],
+    [
+      "brewed_jackalope",
+      "brewed_jackalope_long",
+      "brewed_jackalope_strong"
+    ],
+    [
+      "brewed_unicorn"
+    ],
+    [
+      "brewed_troll",
+      "brewed_troll_long",
+      "brewed_troll_strong"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

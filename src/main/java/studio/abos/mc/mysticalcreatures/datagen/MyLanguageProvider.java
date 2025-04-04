@@ -55,6 +55,8 @@ public class MyLanguageProvider extends LanguageProvider {
         add(MyAdvancementProvider.desc(Name.ADV_COLLECTOR), "These are valuable!");
         add(MyAdvancementProvider.title(Name.ADV_HUNTER), "Hunter");
         add(MyAdvancementProvider.desc(Name.ADV_HUNTER), "Gotta kill 'em all!");
+        add(MyAdvancementProvider.title(Name.ADV_ALCHEMIST), "Alchemist");
+        add(MyAdvancementProvider.desc(Name.ADV_ALCHEMIST), "So far nothing exploded.");
     }
     
     protected void addPotions(final String name, final String title) {
@@ -62,14 +64,14 @@ public class MyLanguageProvider extends LanguageProvider {
         add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + name, SPLASH_POTION_OF + title);
         add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + name, LINGERING_POTION_OF + title);
         add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + name, ARROW_OF + title);
-        add(ITEM_MINECRAFT_POTION_EFFECT + name + MysticalCreatures._LONG, POTION_OF + title);
-        add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + name + MysticalCreatures._LONG, SPLASH_POTION_OF + title);
-        add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + name + MysticalCreatures._LONG, LINGERING_POTION_OF + title);
-        add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + name + MysticalCreatures._LONG, ARROW_OF + title);
-        add(ITEM_MINECRAFT_POTION_EFFECT + name + MysticalCreatures._STRONG, POTION_OF + title);
-        add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + name + MysticalCreatures._STRONG, SPLASH_POTION_OF + title);
-        add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + name + MysticalCreatures._STRONG, LINGERING_POTION_OF + title);
-        add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + name + MysticalCreatures._STRONG, ARROW_OF + title);
+        add(ITEM_MINECRAFT_POTION_EFFECT + name + Name._LONG, POTION_OF + title);
+        add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + name + Name._LONG, SPLASH_POTION_OF + title);
+        add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + name + Name._LONG, LINGERING_POTION_OF + title);
+        add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + name + Name._LONG, ARROW_OF + title);
+        add(ITEM_MINECRAFT_POTION_EFFECT + name + Name._STRONG, POTION_OF + title);
+        add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + name + Name._STRONG, SPLASH_POTION_OF + title);
+        add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + name + Name._STRONG, LINGERING_POTION_OF + title);
+        add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + name + Name._STRONG, ARROW_OF + title);
     }
 
 }
