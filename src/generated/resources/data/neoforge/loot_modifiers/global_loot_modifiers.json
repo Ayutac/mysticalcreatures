@@ -1,0 +1,10 @@
+{
+  "entries": [
+    "mysticalcreatures:outpost_loot_modifier",
+    "mysticalcreatures:witch_loot_modifier",
+    "mysticalcreatures:mansion_loot_modifier",
+    "mysticalcreatures:ancient_city_loot_modifier",
+    "mysticalcreatures:bastion_loot_modifier"
+  ],
+  "replace": false
+}

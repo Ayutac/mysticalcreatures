@@ -1,0 +1,14 @@
+{
+  "type": "mysticalcreatures:simple_loot_modifier",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/ancient_city_ice_box"
+    },
+    {
+      "chance": 0.25,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "drop": "mysticalcreatures:troll_heart"
+}

@@ -55,4 +55,12 @@ public interface Name {
     String HURT_BY_ = "hurt_by_";
     String HURT_BY_UNICORN = HURT_BY_ + UNICORN;
     String HURT_BY_TROLL = HURT_BY_ + TROLL;
+
+    // loot table modifiers
+    String LM_SIMPLE = "simple_loot_modifier";
+    String LM_WITCH = "witch_loot_modifier";
+    String LM_BASTION = "bastion_loot_modifier";
+    String LM_OUTPOST = "outpost_loot_modifier";
+    String LM_MANSION = "mansion_loot_modifier";
+    String LM_ANCIENT_CITY = "ancient_city_loot_modifier";
 }

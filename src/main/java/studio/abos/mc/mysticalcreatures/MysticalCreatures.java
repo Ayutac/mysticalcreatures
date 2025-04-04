@@ -1,5 +1,6 @@
 package studio.abos.mc.mysticalcreatures;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.core.Holder;
 import net.minecraft.data.advancements.AdvancementProvider;
@@ -19,9 +20,11 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -57,10 +60,12 @@ import studio.abos.mc.mysticalcreatures.client.render.entity.UnicornRenderer;
 import studio.abos.mc.mysticalcreatures.datagen.MyAdvancementProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyBiomeTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyBlockTagProvider;
+import studio.abos.mc.mysticalcreatures.datagen.MyGlobalLootModifierProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyItemTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyLanguageProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyEntityLootTableProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyModelProvider;
+import studio.abos.mc.mysticalcreatures.datagen.lootmodifier.SimpleLootModifier;
 import studio.abos.mc.mysticalcreatures.entity.JackalopeEntity;
 import studio.abos.mc.mysticalcreatures.entity.PhoenixEntity;
 import studio.abos.mc.mysticalcreatures.entity.TrollEntity;
@@ -80,6 +85,8 @@ public class MysticalCreatures
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Name.MODID);
     public static final DeferredRegister.Entities ENTITY_TYPES = DeferredRegister.createEntities(Name.MODID);
     public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(Registries.POTION, Name.MODID);
+    public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> GLOBAL_LOOT_MODIFIER_SERIALIZERS =
+            DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Name.MODID);
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Name.MODID);
 
@@ -165,6 +172,9 @@ public class MysticalCreatures
     public static final DeferredItem<SpawnEggItem> TROLL_SPAWN_EGG = ITEMS.registerItem(Name.TROLL + _SPAWN_EGG,
             properties -> new SpawnEggItem(TROLL_ENTITY.get(), properties));
 
+    public static final Supplier<MapCodec<SimpleLootModifier>> SIMPLE_LOOT_MODIFIER =
+            GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(Name.LM_SIMPLE, () -> SimpleLootModifier.CODEC);
+
     public static final ModelLayerLocation PHOENIX_LAYER = new ModelLayerLocation(of(Name.PHOENIX), "head");
     public static final ModelLayerLocation JACKALOPE_LAYER = new ModelLayerLocation(of(Name.JACKALOPE), "head");
     public static final ModelLayerLocation UNICORN_LAYER = new ModelLayerLocation(of(Name.UNICORN), "head");
@@ -195,6 +205,7 @@ public class MysticalCreatures
         ITEMS.register(modEventBus);
         ENTITY_TYPES.register(modEventBus);
         POTIONS.register(modEventBus);
+        GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
@@ -306,9 +317,10 @@ public class MysticalCreatures
             event.createProvider(MyModelProvider::new);
             event.createProvider((output, lookupProvider) ->
                     new AdvancementProvider(output, lookupProvider, List.of(new MyAdvancementProvider())));
+            // loot stuff
             event.createProvider((output, lookupProvider) ->
                     new LootTableProvider(output, Set.of(), List.of(new LootTableProvider.SubProviderEntry(MyEntityLootTableProvider::new, LootContextParamSets.ENTITY)), lookupProvider));
-
+            event.createProvider(MyGlobalLootModifierProvider::new);
         }
     }
 }
