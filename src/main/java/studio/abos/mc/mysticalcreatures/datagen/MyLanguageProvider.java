@@ -12,9 +12,12 @@ public class MyLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.mysticalcreatures", "Mystical Creatures");
+
         addItem(MysticalCreatures.PHOENIX_FEATHER, "Phoenix Feather");
         addItem(MysticalCreatures.JACKALOPE_ANTLERS, "Jackalope Antlers");
         addItem(MysticalCreatures.UNICORN_HORN, "Unicorn Horn");
         addItem(MysticalCreatures.TROLL_HEART, "Troll Heart");
+
+        addEntityType(MysticalCreatures.PHOENIX_ENTITY, "Phoenix");
     }
 }
