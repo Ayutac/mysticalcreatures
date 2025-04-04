@@ -8,7 +8,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -89,10 +88,10 @@ public class MysticalCreatures
     // Creates a new BlockItem with the id "mysticalcreatures:example_block", combining the namespace and path
     // public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
 
-    public static final DeferredItem<Item> PHOENIX_FEATHER = ITEMS.registerSimpleItem(Name.PHOENIX_FEATHER, new Item.Properties().rarity(Rarity.RARE).fireResistant());
-    public static final DeferredItem<Item> JACKALOPE_ANTLERS = ITEMS.registerSimpleItem(Name.JACKALOPE_ANTLERS, new Item.Properties().rarity(Rarity.RARE));
-    public static final DeferredItem<Item> UNICORN_HORN = ITEMS.registerSimpleItem(Name.UNICORN_HORN, new Item.Properties().rarity(Rarity.RARE));
-    public static final DeferredItem<Item> TROLL_HEART = ITEMS.registerSimpleItem(Name.TROLL_HEART, new Item.Properties().rarity(Rarity.RARE));
+    public static final DeferredItem<Item> PHOENIX_FEATHER = ITEMS.registerSimpleItem(Name.PHOENIX_FEATHER, new Item.Properties().fireResistant());
+    public static final DeferredItem<Item> JACKALOPE_ANTLERS = ITEMS.registerSimpleItem(Name.JACKALOPE_ANTLERS, new Item.Properties());
+    public static final DeferredItem<Item> UNICORN_HORN = ITEMS.registerSimpleItem(Name.UNICORN_HORN, new Item.Properties());
+    public static final DeferredItem<Item> TROLL_HEART = ITEMS.registerSimpleItem(Name.TROLL_HEART, new Item.Properties());
 
     public static final Supplier<EntityType<PhoenixEntity>> PHOENIX_ENTITY = ENTITY_TYPES.register(Name.PHOENIX,
             () -> EntityType.Builder.of(PhoenixEntity::new, MobCategory.CREATURE)
