@@ -121,6 +121,15 @@ public class MysticalCreatures
     public static final Holder<Potion> JACKALOPE_POTION_STRONG = POTIONS.register(Name.JACKALOPE + _STRONG, name -> new Potion(name.getPath(),
             new MobEffectInstance(MobEffects.SPEED, 60 * 20, 1),
             new MobEffectInstance(MobEffects.JUMP_BOOST, 60 * 20, 1)));
+    public static final Holder<Potion> TROLL_POTION = POTIONS.register(Name.TROLL, name -> new Potion(name.getPath(),
+            new MobEffectInstance(MobEffects.REGENERATION, 22 * 20 + 10),
+            new MobEffectInstance(MobEffects.STRENGTH, 2 * 60 * 20)));
+    public static final Holder<Potion> TROLL_POTION_LONG = POTIONS.register(Name.TROLL + _LONG, name -> new Potion(name.getPath(),
+            new MobEffectInstance(MobEffects.REGENERATION, 45 * 20),
+            new MobEffectInstance(MobEffects.STRENGTH, 4 * 60 * 20)));
+    public static final Holder<Potion> TROLL_POTION_STRONG = POTIONS.register(Name.TROLL + _STRONG, name -> new Potion(name.getPath(),
+            new MobEffectInstance(MobEffects.REGENERATION, 11 * 20 + 5, 1),
+            new MobEffectInstance(MobEffects.STRENGTH, 60 * 20)));
 
     public static final Supplier<EntityType<PhoenixEntity>> PHOENIX_ENTITY = ENTITY_TYPES.register(Name.PHOENIX,
             () -> EntityType.Builder.of(PhoenixEntity::new, MobCategory.CREATURE)
@@ -252,6 +261,10 @@ public class MysticalCreatures
         builder.addMix(Potions.AWKWARD, JACKALOPE_ANTLERS.get(), JACKALOPE_POTION);
         builder.addMix(JACKALOPE_POTION, Items.REDSTONE, JACKALOPE_POTION_LONG);
         builder.addMix(JACKALOPE_POTION, Items.GLOWSTONE, JACKALOPE_POTION_STRONG);
+        builder.addMix(Potions.AWKWARD, UNICORN_HORN.get(), Potions.LUCK);
+        builder.addMix(Potions.AWKWARD, TROLL_HEART.get(), TROLL_POTION);
+        builder.addMix(TROLL_POTION, Items.REDSTONE, TROLL_POTION_LONG);
+        builder.addMix(TROLL_POTION, Items.GLOWSTONE, TROLL_POTION_STRONG);
     }
 
     @EventBusSubscriber(modid = Name.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
