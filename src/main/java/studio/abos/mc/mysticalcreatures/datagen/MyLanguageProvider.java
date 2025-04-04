@@ -13,6 +13,7 @@ public class MyLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         add("itemGroup.mysticalcreatures", "Mystical Creatures");
 
+        addItem(MysticalCreatures.PHOENIX_SPAWN_EGG, "Phoenix Spawn Egg");
         addItem(MysticalCreatures.PHOENIX_FEATHER, "Phoenix Feather");
         addItem(MysticalCreatures.JACKALOPE_ANTLERS, "Jackalope Antlers");
         addItem(MysticalCreatures.UNICORN_HORN, "Unicorn Horn");

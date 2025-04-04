@@ -14,6 +14,7 @@ public class MyModelProvider extends ModelProvider {
 
     @Override
     protected void registerModels(final BlockModelGenerators blockModels, final ItemModelGenerators itemModels) {
+        itemModels.generateFlatItem(MysticalCreatures.PHOENIX_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(MysticalCreatures.PHOENIX_FEATHER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(MysticalCreatures.JACKALOPE_ANTLERS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(MysticalCreatures.UNICORN_HORN.get(), ModelTemplates.FLAT_ITEM);

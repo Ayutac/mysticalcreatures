@@ -8,6 +8,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -87,6 +88,9 @@ public class MysticalCreatures
             .clientTrackingRange(8)
             .build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(MODID, "phoenix"))));
 
+    public static final DeferredItem<SpawnEggItem> PHOENIX_SPAWN_EGG = ITEMS.registerItem("phoenix_spawn_egg",
+            properties -> new SpawnEggItem(PHOENIX_ENTITY.get(), properties));
+
     public static final ModelLayerLocation PHOENIX_LAYER = new ModelLayerLocation(
             // Should be the name of the entity this layer belongs to.
             // May be more generic if this layer can be used on multiple entities.
@@ -102,6 +106,7 @@ public class MysticalCreatures
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> UNICORN_HORN.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
+                output.accept(PHOENIX_SPAWN_EGG);
                 output.accept(PHOENIX_FEATHER);
                 output.accept(JACKALOPE_ANTLERS);
                 output.accept(UNICORN_HORN);
@@ -155,6 +160,9 @@ public class MysticalCreatures
             event.insertAfter(PHOENIX_FEATHER.get().getDefaultInstance(), JACKALOPE_ANTLERS.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.insertAfter(JACKALOPE_ANTLERS.get().getDefaultInstance(), UNICORN_HORN.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.insertAfter(UNICORN_HORN.get().getDefaultInstance(), TROLL_HEART.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        }
+        else if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(PHOENIX_SPAWN_EGG);
         }
     }
 
