@@ -10,4 +10,5 @@
   * add the drop to `MyEntityLootTableProvider`
   * add the drop to `MyGlobalLootModifierProvider`
   * update `MyAdvancementProvider`
+* add spawn egg
 * update `MyLanguageProvider`
