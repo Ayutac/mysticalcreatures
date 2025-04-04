@@ -1,9 +1,12 @@
 {
   "entity.mysticalcreatures.phoenix": "Phoenix",
   "item.mysticalcreatures.jackalope_antlers": "Jackalope Antlers",
+  "item.mysticalcreatures.jackalope_spawn_egg": "Jackalope Spawn Egg",
   "item.mysticalcreatures.phoenix_feather": "Phoenix Feather",
   "item.mysticalcreatures.phoenix_spawn_egg": "Phoenix Spawn Egg",
   "item.mysticalcreatures.troll_heart": "Troll Heart",
+  "item.mysticalcreatures.troll_spawn_egg": "Troll Spawn Egg",
   "item.mysticalcreatures.unicorn_horn": "Unicorn Horn",
+  "item.mysticalcreatures.unicorn_spawn_egg": "Unicorn Spawn Egg",
   "itemGroup.mysticalcreatures": "Mystical Creatures"
 }

@@ -16,8 +16,11 @@ public class MyModelProvider extends ModelProvider {
     protected void registerModels(final BlockModelGenerators blockModels, final ItemModelGenerators itemModels) {
         itemModels.generateFlatItem(MysticalCreatures.PHOENIX_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(MysticalCreatures.PHOENIX_FEATHER.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(MysticalCreatures.JACKALOPE_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(MysticalCreatures.JACKALOPE_ANTLERS.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(MysticalCreatures.UNICORN_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(MysticalCreatures.UNICORN_HORN.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(MysticalCreatures.TROLL_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(MysticalCreatures.TROLL_HEART.get(), ModelTemplates.FLAT_ITEM);
     }
 }

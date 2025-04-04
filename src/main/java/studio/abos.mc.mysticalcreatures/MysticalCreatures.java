@@ -37,14 +37,23 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import studio.abos.mc.mysticalcreatures.client.model.entity.JackalopeModel;
 import studio.abos.mc.mysticalcreatures.client.model.entity.PhoenixModel;
+import studio.abos.mc.mysticalcreatures.client.model.entity.TrollModel;
+import studio.abos.mc.mysticalcreatures.client.model.entity.UnicornModel;
+import studio.abos.mc.mysticalcreatures.client.render.entity.JackalopeRenderer;
 import studio.abos.mc.mysticalcreatures.client.render.entity.PhoenixRenderer;
+import studio.abos.mc.mysticalcreatures.client.render.entity.TrollRenderer;
+import studio.abos.mc.mysticalcreatures.client.render.entity.UnicornRenderer;
 import studio.abos.mc.mysticalcreatures.datagen.MyBiomeTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyBlockTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyItemTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyLanguageProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyModelProvider;
+import studio.abos.mc.mysticalcreatures.entity.JackalopeEntity;
 import studio.abos.mc.mysticalcreatures.entity.PhoenixEntity;
+import studio.abos.mc.mysticalcreatures.entity.TrollEntity;
+import studio.abos.mc.mysticalcreatures.entity.UnicornEntity;
 
 import java.util.function.Supplier;
 
@@ -87,11 +96,35 @@ public class MysticalCreatures
                     .fireImmune()
                     .clientTrackingRange(8)
                     .build(ResourceKey.create(Registries.ENTITY_TYPE, of("phoenix"))));
+    public static final Supplier<EntityType<JackalopeEntity>> JACKALOPE_ENTITY = ENTITY_TYPES.register("jackalope",
+            () -> EntityType.Builder.of(JackalopeEntity::new, MobCategory.CREATURE)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(8)
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of("jackalope"))));
+    public static final Supplier<EntityType<UnicornEntity>> UNICORN_ENTITY = ENTITY_TYPES.register("unicorn",
+            () -> EntityType.Builder.of(UnicornEntity::new, MobCategory.MONSTER)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(8)
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of("unicorn"))));
+    public static final Supplier<EntityType<TrollEntity>> TROLL_ENTITY = ENTITY_TYPES.register("troll",
+            () -> EntityType.Builder.of(TrollEntity::new, MobCategory.MONSTER)
+                    .sized(1f, 1f)
+                    .clientTrackingRange(8)
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of("troll"))));
 
     public static final DeferredItem<SpawnEggItem> PHOENIX_SPAWN_EGG = ITEMS.registerItem("phoenix_spawn_egg",
             properties -> new SpawnEggItem(PHOENIX_ENTITY.get(), properties));
+    public static final DeferredItem<SpawnEggItem> JACKALOPE_SPAWN_EGG = ITEMS.registerItem("jackalope_spawn_egg",
+            properties -> new SpawnEggItem(JACKALOPE_ENTITY.get(), properties));
+    public static final DeferredItem<SpawnEggItem> UNICORN_SPAWN_EGG = ITEMS.registerItem("unicorn_spawn_egg",
+            properties -> new SpawnEggItem(UNICORN_ENTITY.get(), properties));
+    public static final DeferredItem<SpawnEggItem> TROLL_SPAWN_EGG = ITEMS.registerItem("troll_spawn_egg",
+            properties -> new SpawnEggItem(TROLL_ENTITY.get(), properties));
 
     public static final ModelLayerLocation PHOENIX_LAYER = new ModelLayerLocation(of("phoenix"), "head");
+    public static final ModelLayerLocation JACKALOPE_LAYER = new ModelLayerLocation(of("jackalope"), "head");
+    public static final ModelLayerLocation UNICORN_LAYER = new ModelLayerLocation(of("unicorn"), "head");
+    public static final ModelLayerLocation TROLL_LAYER = new ModelLayerLocation(of("troll"), "head");
 
     // Creates a creative tab with the id "mysticalcreatures:example_tab" for the example item, that is placed after the combat tab
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("mysticalcreatures", () -> CreativeModeTab.builder()
@@ -101,8 +134,11 @@ public class MysticalCreatures
             .displayItems((parameters, output) -> {
                 output.accept(PHOENIX_SPAWN_EGG);
                 output.accept(PHOENIX_FEATHER);
+                output.accept(JACKALOPE_SPAWN_EGG);
                 output.accept(JACKALOPE_ANTLERS);
+                output.accept(UNICORN_SPAWN_EGG);
                 output.accept(UNICORN_HORN);
+                output.accept(TROLL_SPAWN_EGG);
                 output.accept(TROLL_HEART);
             }).build());
 
@@ -160,11 +196,17 @@ public class MysticalCreatures
         }
         else if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(PHOENIX_SPAWN_EGG);
+            event.accept(JACKALOPE_SPAWN_EGG);
+            event.accept(UNICORN_SPAWN_EGG);
+            event.accept(TROLL_SPAWN_EGG);
         }
     }
 
     private void onAttributeCreation(EntityAttributeCreationEvent event) {
         event.put(PHOENIX_ENTITY.get(), PhoenixEntity.createPhoenixAttributes().build());
+        event.put(JACKALOPE_ENTITY.get(), JackalopeEntity.createJackalopeAttributes().build());
+        event.put(UNICORN_ENTITY.get(), UnicornEntity.createUnicornAttributes().build());
+        event.put(TROLL_ENTITY.get(), TrollEntity.createTrollAttributes().build());
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -186,11 +228,17 @@ public class MysticalCreatures
         @SubscribeEvent
         public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(PHOENIX_LAYER, PhoenixModel::createBodyLayer);
+            event.registerLayerDefinition(JACKALOPE_LAYER, JackalopeModel::createBodyLayer);
+            event.registerLayerDefinition(UNICORN_LAYER, UnicornModel::createBodyLayer);
+            event.registerLayerDefinition(TROLL_LAYER, TrollModel::createBodyLayer);
         }
 
         @SubscribeEvent
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(PHOENIX_ENTITY.get(), PhoenixRenderer::new);
+            event.registerEntityRenderer(JACKALOPE_ENTITY.get(), JackalopeRenderer::new);
+            event.registerEntityRenderer(UNICORN_ENTITY.get(), UnicornRenderer::new);
+            event.registerEntityRenderer(TROLL_ENTITY.get(), TrollRenderer::new);
         }
     }
 
