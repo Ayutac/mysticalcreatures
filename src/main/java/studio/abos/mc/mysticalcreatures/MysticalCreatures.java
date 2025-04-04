@@ -3,6 +3,7 @@ package studio.abos.mc.mysticalcreatures;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.core.Holder;
 import net.minecraft.data.advancements.AdvancementProvider;
+import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
@@ -57,6 +59,7 @@ import studio.abos.mc.mysticalcreatures.datagen.MyBiomeTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyBlockTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyItemTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyLanguageProvider;
+import studio.abos.mc.mysticalcreatures.datagen.MyEntityLootTableProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyModelProvider;
 import studio.abos.mc.mysticalcreatures.entity.JackalopeEntity;
 import studio.abos.mc.mysticalcreatures.entity.PhoenixEntity;
@@ -64,6 +67,7 @@ import studio.abos.mc.mysticalcreatures.entity.TrollEntity;
 import studio.abos.mc.mysticalcreatures.entity.UnicornEntity;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -302,6 +306,9 @@ public class MysticalCreatures
             event.createProvider(MyModelProvider::new);
             event.createProvider((output, lookupProvider) ->
                     new AdvancementProvider(output, lookupProvider, List.of(new MyAdvancementProvider())));
+            event.createProvider((output, lookupProvider) ->
+                    new LootTableProvider(output, Set.of(), List.of(new LootTableProvider.SubProviderEntry(MyEntityLootTableProvider::new, LootContextParamSets.ENTITY)), lookupProvider));
+
         }
     }
 }
