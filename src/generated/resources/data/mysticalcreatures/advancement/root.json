@@ -60,7 +60,7 @@
       "conditions": {
         "damage": {
           "source_entity": {
-            "type": "mysticalcreatures:unicorn"
+            "type": "mysticalcreatures:troll"
           }
         }
       },

@@ -6,6 +6,16 @@ import studio.abos.mc.mysticalcreatures.MysticalCreatures;
 import studio.abos.mc.mysticalcreatures.Name;
 
 public class MyLanguageProvider extends LanguageProvider {
+
+    private static final String ITEM_MINECRAFT_POTION_EFFECT = "item.minecraft.potion.effect.";
+    private static final String POTION_OF = "Potion of ";
+    private static final String ITEM_MINECRAFT_SPLASH_POTION_EFFECT = "item.minecraft.splash_potion.effect.";
+    private static final String SPLASH_POTION_OF = "Splash Potion of ";
+    private static final String ITEM_MINECRAFT_LINGERING_POTION_EFFECT = "item.minecraft.lingering_potion.effect.";
+    private static final String LINGERING_POTION_OF = "Lingering Potion of ";
+    private static final String ITEM_MINECRAFT_TIPPED_ARROW_EFFECT = "item.minecraft.tipped_arrow.effect.";
+    private static final String ARROW_OF = "Arrow of ";
+
     public MyLanguageProvider(final PackOutput output) {
         super(output, Name.MODID, "en_us");
     }
@@ -23,6 +33,20 @@ public class MyLanguageProvider extends LanguageProvider {
         addItem(MysticalCreatures.TROLL_SPAWN_EGG, "Troll Spawn Egg");
         addItem(MysticalCreatures.TROLL_HEART, "Troll Heart");
 
+        final String thePhoenixMaster = "the Phoenix Master";
+        add(ITEM_MINECRAFT_POTION_EFFECT + Name.PHOENIX, POTION_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + Name.PHOENIX, SPLASH_POTION_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + Name.PHOENIX, LINGERING_POTION_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + Name.PHOENIX, ARROW_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_POTION_EFFECT + Name.PHOENIX + MysticalCreatures._LONG, POTION_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + Name.PHOENIX + MysticalCreatures._LONG, SPLASH_POTION_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + Name.PHOENIX + MysticalCreatures._LONG, LINGERING_POTION_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + Name.PHOENIX + MysticalCreatures._LONG, ARROW_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_POTION_EFFECT + Name.PHOENIX + MysticalCreatures._STRONG, POTION_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_SPLASH_POTION_EFFECT + Name.PHOENIX + MysticalCreatures._STRONG, SPLASH_POTION_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_LINGERING_POTION_EFFECT + Name.PHOENIX + MysticalCreatures._STRONG, LINGERING_POTION_OF + thePhoenixMaster);
+        add(ITEM_MINECRAFT_TIPPED_ARROW_EFFECT + Name.PHOENIX + MysticalCreatures._STRONG, ARROW_OF + thePhoenixMaster);
+
         addEntityType(MysticalCreatures.PHOENIX_ENTITY, "Phoenix");
         addEntityType(MysticalCreatures.JACKALOPE_ENTITY, "Jackalope");
         addEntityType(MysticalCreatures.UNICORN_ENTITY, "Unicorn");
@@ -37,4 +61,5 @@ public class MyLanguageProvider extends LanguageProvider {
         add(MyAdvancementProvider.title(Name.ADV_HUNTER), "Hunter");
         add(MyAdvancementProvider.desc(Name.ADV_HUNTER), "Gotta kill 'em all!");
     }
+
 }

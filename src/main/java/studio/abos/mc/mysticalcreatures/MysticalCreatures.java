@@ -1,17 +1,24 @@
 package studio.abos.mc.mysticalcreatures;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.core.Holder;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import org.slf4j.Logger;
 
@@ -68,6 +75,7 @@ public class MysticalCreatures
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Name.MODID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Name.MODID);
     public static final DeferredRegister.Entities ENTITY_TYPES = DeferredRegister.createEntities(Name.MODID);
+    public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(Registries.POTION, Name.MODID);
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Name.MODID);
 
@@ -92,6 +100,18 @@ public class MysticalCreatures
     public static final DeferredItem<Item> JACKALOPE_ANTLERS = ITEMS.registerSimpleItem(Name.JACKALOPE_ANTLERS, new Item.Properties());
     public static final DeferredItem<Item> UNICORN_HORN = ITEMS.registerSimpleItem(Name.UNICORN_HORN, new Item.Properties());
     public static final DeferredItem<Item> TROLL_HEART = ITEMS.registerSimpleItem(Name.TROLL_HEART, new Item.Properties());
+
+    public static final String _LONG = "_long";
+    public static final String _STRONG = "_strong";
+    public static final Holder<Potion> PHOENIX_POTION = POTIONS.register(Name.PHOENIX, name -> new Potion(name.getPath(),
+            new MobEffectInstance(MobEffects.REGENERATION, 22 * 20 + 10),
+            new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2 * 60 * 20)));
+    public static final Holder<Potion> PHOENIX_POTION_LONG = POTIONS.register(Name.PHOENIX + _LONG, name -> new Potion(name.getPath(),
+            new MobEffectInstance(MobEffects.REGENERATION, 45 * 20),
+            new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 4 * 60 * 20)));
+    public static final Holder<Potion> PHOENIX_POTION_STRONG = POTIONS.register(Name.PHOENIX + _STRONG, name -> new Potion(name.getPath(),
+            new MobEffectInstance(MobEffects.REGENERATION, 11 * 20 + 5, 1),
+            new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2 * 60 * 20)));
 
     public static final Supplier<EntityType<PhoenixEntity>> PHOENIX_ENTITY = ENTITY_TYPES.register(Name.PHOENIX,
             () -> EntityType.Builder.of(PhoenixEntity::new, MobCategory.CREATURE)
@@ -151,13 +171,10 @@ public class MysticalCreatures
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        // Register the Deferred Register to the mod event bus so blocks get registered
         BLOCKS.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so items get registered
         ITEMS.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so entity types get registered
         ENTITY_TYPES.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so tabs get registered
+        POTIONS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
@@ -165,15 +182,14 @@ public class MysticalCreatures
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
-        // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::onAttributeCreation);
+        modEventBus.addListener(this::addCreative);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
-    public static ResourceLocation of(String name) {
+    public static ResourceLocation of(final String name) {
         return ResourceLocation.fromNamespaceAndPath(Name.MODID, name);
     }
 
@@ -189,8 +205,18 @@ public class MysticalCreatures
 //        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
+    @SubscribeEvent
+    public void registerBrewingRecipes(final RegisterBrewingRecipesEvent event) {
+        PotionBrewing.Builder builder = event.getBuilder();
+
+        // Will add brewing recipes for all container potions (e.g. potion, splash potion, lingering potion)
+        builder.addMix(Potions.AWKWARD, PHOENIX_FEATHER.get(), PHOENIX_POTION);
+        builder.addMix(PHOENIX_POTION, Items.REDSTONE, PHOENIX_POTION_LONG);
+        builder.addMix(PHOENIX_POTION, Items.GLOWSTONE, PHOENIX_POTION_STRONG);
+    }
+
     // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+    private void addCreative(final BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.insertAfter(Items.PHANTOM_MEMBRANE.getDefaultInstance(), PHOENIX_FEATHER.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.insertAfter(PHOENIX_FEATHER.get().getDefaultInstance(), JACKALOPE_ANTLERS.get().getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -205,7 +231,7 @@ public class MysticalCreatures
         }
     }
 
-    private void onAttributeCreation(EntityAttributeCreationEvent event) {
+    private void onAttributeCreation(final EntityAttributeCreationEvent event) {
         event.put(PHOENIX_ENTITY.get(), PhoenixEntity.createPhoenixAttributes().build());
         event.put(JACKALOPE_ENTITY.get(), JackalopeEntity.createJackalopeAttributes().build());
         event.put(UNICORN_ENTITY.get(), UnicornEntity.createUnicornAttributes().build());
