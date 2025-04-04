@@ -61,15 +61,15 @@ public class MysticalCreatures
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final TagKey<Item> PHOENIX_BREEDING_ITEMS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "phoenix_breeding_items"));
-    public static final TagKey<Item> JACKALOPE_BREEDING_ITEMS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "jackalope_breeding_items"));
-    public static final TagKey<Item> UNICORN_BREEDING_ITEMS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "unicorn_breeding_items"));
-    public static final TagKey<Item> TROLL_BREEDING_ITEMS = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "troll_breeding_items"));
+    public static final TagKey<Item> PHOENIX_BREEDING_ITEMS = TagKey.create(Registries.ITEM, MysticalCreatures.of("phoenix_breeding_items"));
+    public static final TagKey<Item> JACKALOPE_BREEDING_ITEMS = TagKey.create(Registries.ITEM, MysticalCreatures.of("jackalope_breeding_items"));
+    public static final TagKey<Item> UNICORN_BREEDING_ITEMS = TagKey.create(Registries.ITEM, MysticalCreatures.of("unicorn_breeding_items"));
+    public static final TagKey<Item> TROLL_BREEDING_ITEMS = TagKey.create(Registries.ITEM, MysticalCreatures.of("troll_breeding_items"));
 
-    public static final TagKey<Biome> PHOENIX_SPAWNS_ON = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "phoenix_spawns_on"));
-    public static final TagKey<Biome> JACKALOPE_SPAWNS_ON = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "jackalope_spawns_on"));
-    public static final TagKey<Biome> UNICORN_SPAWNS_ON = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "unicorn_spawns_on"));
-    public static final TagKey<Biome> TROLL_SPAWNS_ON = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(MODID, "troll_spawns_on"));
+    public static final TagKey<Biome> PHOENIX_SPAWNS_ON = TagKey.create(Registries.BIOME, MysticalCreatures.of("phoenix_spawns_on"));
+    public static final TagKey<Biome> JACKALOPE_SPAWNS_ON = TagKey.create(Registries.BIOME, MysticalCreatures.of("jackalope_spawns_on"));
+    public static final TagKey<Biome> UNICORN_SPAWNS_ON = TagKey.create(Registries.BIOME, MysticalCreatures.of("unicorn_spawns_on"));
+    public static final TagKey<Biome> TROLL_SPAWNS_ON = TagKey.create(Registries.BIOME, MysticalCreatures.of("troll_spawns_on"));
 
     // Creates a new Block with the id "mysticalcreatures:example_block", combining the namespace and path
     // public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
@@ -83,22 +83,15 @@ public class MysticalCreatures
 
     public static final Supplier<EntityType<PhoenixEntity>> PHOENIX_ENTITY = ENTITY_TYPES.register("phoenix",
             () -> EntityType.Builder.of(PhoenixEntity::new, MobCategory.CREATURE)
-            .sized(1f, 1f)
-            .fireImmune()
-            .clientTrackingRange(8)
-            .build(ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(MODID, "phoenix"))));
+                    .sized(1f, 1f)
+                    .fireImmune()
+                    .clientTrackingRange(8)
+                    .build(ResourceKey.create(Registries.ENTITY_TYPE, of("phoenix"))));
 
     public static final DeferredItem<SpawnEggItem> PHOENIX_SPAWN_EGG = ITEMS.registerItem("phoenix_spawn_egg",
             properties -> new SpawnEggItem(PHOENIX_ENTITY.get(), properties));
 
-    public static final ModelLayerLocation PHOENIX_LAYER = new ModelLayerLocation(
-            // Should be the name of the entity this layer belongs to.
-            // May be more generic if this layer can be used on multiple entities.
-            ResourceLocation.fromNamespaceAndPath(MODID, "phoenix_entity"),
-            // The name of the layer itself. Should be main for the entity's base model,
-            // and a more descriptive name (e.g. "wings") for more specific layers.
-            "head"
-    );
+    public static final ModelLayerLocation PHOENIX_LAYER = new ModelLayerLocation(of("phoenix"), "head");
 
     // Creates a creative tab with the id "mysticalcreatures:example_tab" for the example item, that is placed after the combat tab
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("mysticalcreatures", () -> CreativeModeTab.builder()
@@ -141,6 +134,10 @@ public class MysticalCreatures
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
+    public static ResourceLocation of(String name) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, name);
+    }
+
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
 //        LOGGER.info("HELLO FROM COMMON SETUP");
@@ -166,7 +163,7 @@ public class MysticalCreatures
         }
     }
 
-    public void onAttributeCreation(EntityAttributeCreationEvent event) {
+    private void onAttributeCreation(EntityAttributeCreationEvent event) {
         event.put(PHOENIX_ENTITY.get(), PhoenixEntity.createPhoenixAttributes().build());
     }
 

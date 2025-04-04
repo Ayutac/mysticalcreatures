@@ -20,7 +20,7 @@ public class PhoenixRenderer extends AgeableMobRenderer<PhoenixEntity, PhoenixRe
 
     @Override
     public ResourceLocation getTextureLocation(PhoenixRenderState phoenixRenderState) {
-        return ResourceLocation.fromNamespaceAndPath(MysticalCreatures.MODID, "phoenix_entity");
+        return MysticalCreatures.of("phoenix_entity");
     }
 
     @Override
