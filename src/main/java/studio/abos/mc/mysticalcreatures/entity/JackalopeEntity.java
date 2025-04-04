@@ -22,7 +22,7 @@ public class JackalopeEntity extends Animal {
 
     @Override
     public boolean isFood(final ItemStack itemStack) {
-        return itemStack.is(MysticalCreatures.JACKALOPE_BREEDING_ITEMS);
+        return itemStack.is(MysticalCreatures.JACKALOPE_FOOD);
     }
 
     @Override

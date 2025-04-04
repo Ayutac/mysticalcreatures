@@ -17,9 +17,9 @@ public class MyItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(final HolderLookup.Provider provider) {
-        tag(MysticalCreatures.PHOENIX_BREEDING_ITEMS).add(Items.MAGMA_CREAM);
-        tag(MysticalCreatures.JACKALOPE_BREEDING_ITEMS).add(Items.RABBIT);
-        tag(MysticalCreatures.UNICORN_BREEDING_ITEMS).add(Items.LAPIS_LAZULI);
-        tag(MysticalCreatures.TROLL_BREEDING_ITEMS).add(Items.BEEF);
+        tag(MysticalCreatures.PHOENIX_FOOD).add(Items.MAGMA_CREAM);
+        tag(MysticalCreatures.JACKALOPE_FOOD).add(Items.RABBIT);
+        tag(MysticalCreatures.UNICORN_FOOD).add(Items.LAPIS_LAZULI);
+        tag(MysticalCreatures.TROLL_FOOD).add(Items.BEEF);
     }
 }

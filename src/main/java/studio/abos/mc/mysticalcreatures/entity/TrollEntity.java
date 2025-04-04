@@ -22,7 +22,7 @@ public class TrollEntity extends Animal {
 
     @Override
     public boolean isFood(final ItemStack itemStack) {
-        return itemStack.is(MysticalCreatures.TROLL_BREEDING_ITEMS);
+        return itemStack.is(MysticalCreatures.TROLL_FOOD);
     }
 
     @Override

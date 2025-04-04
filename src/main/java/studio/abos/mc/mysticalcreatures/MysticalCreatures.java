@@ -70,15 +70,15 @@ public class MysticalCreatures
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final TagKey<Item> PHOENIX_BREEDING_ITEMS = TagKey.create(Registries.ITEM, MysticalCreatures.of("phoenix_breeding_items"));
-    public static final TagKey<Item> JACKALOPE_BREEDING_ITEMS = TagKey.create(Registries.ITEM, MysticalCreatures.of("jackalope_breeding_items"));
-    public static final TagKey<Item> UNICORN_BREEDING_ITEMS = TagKey.create(Registries.ITEM, MysticalCreatures.of("unicorn_breeding_items"));
-    public static final TagKey<Item> TROLL_BREEDING_ITEMS = TagKey.create(Registries.ITEM, MysticalCreatures.of("troll_breeding_items"));
+    public static final TagKey<Item> PHOENIX_FOOD = TagKey.create(Registries.ITEM, of("phoenix_food"));
+    public static final TagKey<Item> JACKALOPE_FOOD = TagKey.create(Registries.ITEM, of("jackalope_food"));
+    public static final TagKey<Item> UNICORN_FOOD = TagKey.create(Registries.ITEM, of("unicorn_food"));
+    public static final TagKey<Item> TROLL_FOOD = TagKey.create(Registries.ITEM, of("troll_food"));
 
-    public static final TagKey<Biome> PHOENIX_SPAWNS_ON = TagKey.create(Registries.BIOME, MysticalCreatures.of("phoenix_spawns_on"));
-    public static final TagKey<Biome> JACKALOPE_SPAWNS_ON = TagKey.create(Registries.BIOME, MysticalCreatures.of("jackalope_spawns_on"));
-    public static final TagKey<Biome> UNICORN_SPAWNS_ON = TagKey.create(Registries.BIOME, MysticalCreatures.of("unicorn_spawns_on"));
-    public static final TagKey<Biome> TROLL_SPAWNS_ON = TagKey.create(Registries.BIOME, MysticalCreatures.of("troll_spawns_on"));
+    public static final TagKey<Biome> PHOENIX_SPAWNS_ON = TagKey.create(Registries.BIOME, of("phoenix_spawns_on"));
+    public static final TagKey<Biome> JACKALOPE_SPAWNS_ON = TagKey.create(Registries.BIOME, of("jackalope_spawns_on"));
+    public static final TagKey<Biome> UNICORN_SPAWNS_ON = TagKey.create(Registries.BIOME, of("unicorn_spawns_on"));
+    public static final TagKey<Biome> TROLL_SPAWNS_ON = TagKey.create(Registries.BIOME, of("troll_spawns_on"));
 
     // Creates a new Block with the id "mysticalcreatures:example_block", combining the namespace and path
     // public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));

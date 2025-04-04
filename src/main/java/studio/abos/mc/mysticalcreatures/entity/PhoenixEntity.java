@@ -22,7 +22,7 @@ public class PhoenixEntity extends Animal {
 
     @Override
     public boolean isFood(final ItemStack itemStack) {
-        return itemStack.is(MysticalCreatures.PHOENIX_BREEDING_ITEMS);
+        return itemStack.is(MysticalCreatures.PHOENIX_FOOD);
     }
 
     @Override
