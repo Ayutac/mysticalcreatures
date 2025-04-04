@@ -1,5 +1,8 @@
 {
+  "entity.mysticalcreatures.jackalope": "Jackalope",
   "entity.mysticalcreatures.phoenix": "Phoenix",
+  "entity.mysticalcreatures.troll": "Troll",
+  "entity.mysticalcreatures.unicorn": "Unicorn",
   "item.mysticalcreatures.jackalope_antlers": "Jackalope Antlers",
   "item.mysticalcreatures.jackalope_spawn_egg": "Jackalope Spawn Egg",
   "item.mysticalcreatures.phoenix_feather": "Phoenix Feather",
