@@ -110,6 +110,8 @@ public class MysticalCreatures
 
     private static final String _AVOIDS = "_avoids";
     public static final TagKey<EntityType<?>> JACKALOPE_AVOIDS = TagKey.create(Registries.ENTITY_TYPE, of(Name.JACKALOPE + _AVOIDS));
+    private static final String _HUNTS = "_hunts";
+    public static final TagKey<EntityType<?>> JACKALOPE_HUNTS = TagKey.create(Registries.ENTITY_TYPE, of(Name.JACKALOPE + _HUNTS));
 
     private static final String _SPAWNS_ON = "_spawns_on";
     public static final TagKey<Biome> PHOENIX_SPAWNS_ON = TagKey.create(Registries.BIOME, of(Name.PHOENIX + _SPAWNS_ON));
