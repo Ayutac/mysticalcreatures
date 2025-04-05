@@ -57,5 +57,10 @@
   "item.mysticalcreatures.troll_spawn_egg": "Troll Spawn Egg",
   "item.mysticalcreatures.unicorn_horn": "Unicorn Horn",
   "item.mysticalcreatures.unicorn_spawn_egg": "Unicorn Spawn Egg",
-  "itemGroup.mysticalcreatures": "Mystical Creatures"
+  "itemGroup.mysticalcreatures": "Mystical Creatures",
+  "subtitles.entity.mysticalcreatures.jackalope.ambient": "Jackalope squeaks",
+  "subtitles.entity.mysticalcreatures.jackalope.attack": "Jackalope attacks",
+  "subtitles.entity.mysticalcreatures.jackalope.death": "Jackalope dies",
+  "subtitles.entity.mysticalcreatures.jackalope.hurt": "Jackalope hurts",
+  "subtitles.entity.mysticalcreatures.jackalope.jump": "Jackalope hops"
 }

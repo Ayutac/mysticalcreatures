@@ -2,7 +2,6 @@ package studio.abos.mc.mysticalcreatures.entity;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
@@ -74,27 +73,27 @@ public class JackalopeEntity extends AbstractMysticalCreature {
     }
 
     protected SoundEvent getJumpSound() {
-        return SoundEvents.RABBIT_JUMP;
+        return MysticalCreatures.JACKALOPE_JUMP_SOUND.value();
     }
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.RABBIT_AMBIENT;
+        return MysticalCreatures.JACKALOPE_AMBIENT_SOUND.value();
     }
 
     @Override
     protected SoundEvent getHurtSound(final @NotNull DamageSource damageSource) {
-        return SoundEvents.RABBIT_HURT;
+        return MysticalCreatures.JACKALOPE_HURT_SOUND.value();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.RABBIT_DEATH;
+        return MysticalCreatures.JACKALOPE_DEATH_SOUND.value();
     }
 
     @Override
     public void playAttackSound() {
-        playSound(SoundEvents.RABBIT_ATTACK, 1f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f + 1f);
+        playSound(MysticalCreatures.JACKALOPE_ATTACK_SOUND.value(), 1f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f + 1f);
     }
 
     @NotNull

@@ -65,8 +65,17 @@ public interface Name {
     String LM_ANCIENT_CITY = "ancient_city_loot_modifier";
 
     // biome modifiers
-    String BM_PHOENIX = PHOENIX + "_biome_modifier";
-    String BM_JACKALOPE = JACKALOPE + "_biome_modifier";
-    String BM_UNICORN = UNICORN + "_biome_modifier";
-    String BM_TROLL = TROLL + "_biome_modifier";
+    String _BM = "_biome_modifier";
+    String BM_PHOENIX = PHOENIX + _BM;
+    String BM_JACKALOPE = JACKALOPE + _BM;
+    String BM_UNICORN = UNICORN + _BM;
+    String BM_TROLL = TROLL + _BM;
+
+    // subtitles
+    String ST = "subtitles.";
+    String ST_JACKALOPE_AMBIENT = ST + "entity." + MODID + "." + JACKALOPE + ".ambient";
+    String ST_JACKALOPE_ATTACK = ST + "entity." + MODID + "." + JACKALOPE + ".attack";
+    String ST_JACKALOPE_DEATH = ST + "entity." + MODID + "." + JACKALOPE + ".death";
+    String ST_JACKALOPE_HURT = ST + "entity." + MODID + "." + JACKALOPE + ".hurt";
+    String ST_JACKALOPE_JUMP = ST + "entity." + MODID + "." + JACKALOPE + ".jump";
 }

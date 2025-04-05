@@ -57,6 +57,13 @@ public class MyLanguageProvider extends LanguageProvider {
         add(MyAdvancementProvider.desc(Name.ADV_HUNTER), "Gotta kill 'em all!");
         add(MyAdvancementProvider.title(Name.ADV_ALCHEMIST), "Alchemist");
         add(MyAdvancementProvider.desc(Name.ADV_ALCHEMIST), "So far nothing exploded.");
+
+        // sound subtitles
+        add(Name.ST_JACKALOPE_AMBIENT, "Jackalope squeaks");
+        add(Name.ST_JACKALOPE_ATTACK, "Jackalope attacks");
+        add(Name.ST_JACKALOPE_DEATH, "Jackalope dies");
+        add(Name.ST_JACKALOPE_HURT, "Jackalope hurts");
+        add(Name.ST_JACKALOPE_JUMP, "Jackalope hops");
     }
     
     protected void addPotions(final String name, final String title) {

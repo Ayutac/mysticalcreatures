@@ -78,6 +78,7 @@ import studio.abos.mc.mysticalcreatures.datagen.MyItemTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyLanguageProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyEntityLootTableProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyModelProvider;
+import studio.abos.mc.mysticalcreatures.datagen.MySoundDefinitionsProvider;
 import studio.abos.mc.mysticalcreatures.datagen.lootmodifier.SimpleLootModifier;
 import studio.abos.mc.mysticalcreatures.entity.JackalopeEntity;
 import studio.abos.mc.mysticalcreatures.entity.PhoenixEntity;
@@ -216,7 +217,11 @@ public class MysticalCreatures
     public static final ModelLayerLocation UNICORN_LAYER = new ModelLayerLocation(of(Name.UNICORN), "head");
     public static final ModelLayerLocation TROLL_LAYER = new ModelLayerLocation(of(Name.TROLL), "head");
 
-    //public static final Holder<SoundEvent> MY_SOUND = SOUNDS.register("entity." + Name.JACKALOPE + ".ambient", SoundEvent::createVariableRangeEvent);
+    public static final Holder<SoundEvent> JACKALOPE_AMBIENT_SOUND = SOUNDS.register("entity." + Name.JACKALOPE + ".ambient", SoundEvent::createVariableRangeEvent);
+    public static final Holder<SoundEvent> JACKALOPE_ATTACK_SOUND = SOUNDS.register("entity." + Name.JACKALOPE + ".attack", SoundEvent::createVariableRangeEvent);
+    public static final Holder<SoundEvent> JACKALOPE_DEATH_SOUND = SOUNDS.register("entity." + Name.JACKALOPE + ".death", SoundEvent::createVariableRangeEvent);
+    public static final Holder<SoundEvent> JACKALOPE_HURT_SOUND = SOUNDS.register("entity." + Name.JACKALOPE + ".hurt", SoundEvent::createVariableRangeEvent);
+    public static final Holder<SoundEvent> JACKALOPE_JUMP_SOUND = SOUNDS.register("entity." + Name.JACKALOPE + ".jump", SoundEvent::createVariableRangeEvent);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register(Name.MODID, () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup." + Name.MODID)) //The language key for the title of your CreativeModeTab
@@ -401,6 +406,7 @@ public class MysticalCreatures
             event.createProvider(MyModelProvider::new);
             event.createProvider((output, lookupProvider) ->
                     new AdvancementProvider(output, lookupProvider, List.of(new MyAdvancementProvider())));
+            event.createProvider(MySoundDefinitionsProvider::new);
             // loot stuff
             event.createProvider((output, lookupProvider) ->
                     new LootTableProvider(output, Set.of(), List.of(new LootTableProvider.SubProviderEntry(MyEntityLootTableProvider::new, LootContextParamSets.ENTITY)), lookupProvider));

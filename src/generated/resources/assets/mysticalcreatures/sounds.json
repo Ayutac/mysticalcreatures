@@ -1,0 +1,141 @@
+{
+  "entity.jackalope.ambient": {
+    "sounds": [
+      {
+        "name": "mob/rabbit/idle1",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true,
+        "volume": 0.25
+      },
+      {
+        "name": "mob/rabbit/idle2",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true,
+        "volume": 0.25
+      },
+      {
+        "name": "mob/rabbit/idle3",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true,
+        "volume": 0.25
+      },
+      {
+        "name": "mob/rabbit/idle4",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true,
+        "volume": 0.25
+      }
+    ],
+    "subtitle": "subtitles.entity.mysticalcreatures.jackalope.ambient"
+  },
+  "entity.jackalope.attack": {
+    "sounds": [
+      {
+        "name": "entity/rabbit/attack1",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      },
+      {
+        "name": "entity/rabbit/attack2",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      },
+      {
+        "name": "entity/rabbit/attack3",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      },
+      {
+        "name": "entity/rabbit/attack4",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.entity.mysticalcreatures.jackalope.attack"
+  },
+  "entity.jackalope.death": {
+    "sounds": [
+      {
+        "name": "mob/rabbit/bunnymurder",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true,
+        "volume": 0.5
+      }
+    ]
+  },
+  "entity.jackalope.hurt": {
+    "sounds": [
+      {
+        "name": "mob/rabbit/hurt1",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true,
+        "volume": 0.5
+      },
+      {
+        "name": "mob/rabbit/hurt2",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true,
+        "volume": 0.5
+      },
+      {
+        "name": "mob/rabbit/hurt3",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true,
+        "volume": 0.5
+      },
+      {
+        "name": "mob/rabbit/hurt4",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true,
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "subtitles.entity.mysticalcreatures.jackalope.hurt"
+  },
+  "entity.jackalope.jump": {
+    "sounds": [
+      {
+        "name": "mob/rabbit/hop1",
+        "pitch": 0.96,
+        "preload": true,
+        "stream": true,
+        "volume": 0.1
+      },
+      {
+        "name": "mob/rabbit/hop2",
+        "pitch": 0.96,
+        "preload": true,
+        "stream": true,
+        "volume": 0.1
+      },
+      {
+        "name": "mob/rabbit/hop3",
+        "pitch": 0.96,
+        "preload": true,
+        "stream": true,
+        "volume": 0.1
+      },
+      {
+        "name": "mob/rabbit/hop4",
+        "pitch": 0.96,
+        "preload": true,
+        "stream": true,
+        "volume": 0.1
+      }
+    ],
+    "subtitle": "subtitles.entity.mysticalcreatures.jackalope.jump"
+  }
+}
