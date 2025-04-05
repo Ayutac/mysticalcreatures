@@ -186,7 +186,7 @@ public class JackalopeEntity extends AbstractMysticalCreature {
 
     private void setLandingDelay() {
         if (this.moveControl.getSpeedModifier() < 2.2) {
-            this.jumpDelayTicks = 10;
+            this.jumpDelayTicks = 2;
         } else {
             this.jumpDelayTicks = 1;
         }
@@ -287,6 +287,11 @@ public class JackalopeEntity extends AbstractMysticalCreature {
             }
 
             super.tick();
+        }
+
+        @Override
+        public double getSpeedModifier() {
+            return super.getSpeedModifier() * 1.5; // the Jackalope extra
         }
 
         @Override
