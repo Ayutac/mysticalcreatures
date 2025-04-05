@@ -3,6 +3,7 @@ package studio.abos.mc.mysticalcreatures.entity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.ai.goal.ClimbOnTopOfPowderSnowGoal;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -55,7 +57,8 @@ public class JackalopeEntity extends AbstractMysticalCreature {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(0, new ClimbOnTopOfPowderSnowGoal(this, this.level()));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.5f, true));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 2.2f, true));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 2f, DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES));
         this.goalSelector.addGoal(2, new BreedGoal(this, 0.8));
         this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Animal.class, 10.0F, 2.2, 2.2,
                 livingEntity -> EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingEntity) && livingEntity.getType().is(MysticalCreatures.JACKALOPE_AVOIDS)));
@@ -186,7 +189,7 @@ public class JackalopeEntity extends AbstractMysticalCreature {
 
     private void setLandingDelay() {
         if (this.moveControl.getSpeedModifier() < 2.2) {
-            this.jumpDelayTicks = 2;
+            this.jumpDelayTicks = 10;
         } else {
             this.jumpDelayTicks = 1;
         }
