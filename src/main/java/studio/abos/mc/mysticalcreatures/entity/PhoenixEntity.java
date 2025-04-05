@@ -3,6 +3,7 @@ package studio.abos.mc.mysticalcreatures.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.TimeUtil;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
@@ -17,9 +18,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
 
-public class PhoenixEntity extends Animal {
+public class PhoenixEntity extends AbstractMysticalCreature {
     public PhoenixEntity(final EntityType<? extends PhoenixEntity> entityType, final Level level) {
-        super(entityType, level);
+        super(entityType, level, MysticalCreatures.PHOENIX_FOOD);
     }
 
     public static AttributeSupplier.Builder createPhoenixAttributes() {
@@ -55,5 +56,10 @@ public class PhoenixEntity extends Animal {
             }
         }
         super.tickDeath();
+    }
+
+    @Override
+    public void startPersistentAngerTimer() {
+        remainingPersistentAngerTime = TimeUtil.rangeOfSeconds(20, 39).sample(random);
     }
 }

@@ -1,6 +1,7 @@
 package studio.abos.mc.mysticalcreatures.entity;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.TimeUtil;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
@@ -13,9 +14,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
 
-public class UnicornEntity extends Animal {
+public class UnicornEntity extends AbstractMysticalCreature {
     public UnicornEntity(final EntityType<? extends UnicornEntity> entityType, final Level level) {
-        super(entityType, level);
+        super(entityType, level, MysticalCreatures.UNICORN_FOOD);
     }
 
     public static AttributeSupplier.Builder createUnicornAttributes() {
@@ -23,17 +24,7 @@ public class UnicornEntity extends Animal {
     }
 
     @Override
-    public boolean isFood(final ItemStack itemStack) {
-        return itemStack.is(MysticalCreatures.UNICORN_FOOD);
-    }
-
-    @Nullable
-    @Override
-    public AgeableMob getBreedOffspring(final @NotNull ServerLevel serverLevel, final @NotNull AgeableMob ageableMob) {
-        final AgeableMob offspring = MysticalCreatures.UNICORN_ENTITY.get().create(serverLevel, EntitySpawnReason.BREEDING);
-        if (offspring != null) {
-            offspring.setBaby(true);
-        }
-        return offspring;
+    public void startPersistentAngerTimer() {
+        remainingPersistentAngerTime = TimeUtil.rangeOfSeconds(20, 39).sample(random);
     }
 }

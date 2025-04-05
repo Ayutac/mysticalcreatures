@@ -1,6 +1,7 @@
 package studio.abos.mc.mysticalcreatures.entity;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.TimeUtil;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
@@ -13,9 +14,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
 
-public class TrollEntity extends Animal {
+public class TrollEntity extends AbstractMysticalCreature {
     public TrollEntity(final EntityType<? extends TrollEntity> entityType, final Level level) {
-        super(entityType, level);
+        super(entityType, level, MysticalCreatures.TROLL_FOOD);
     }
 
     public static AttributeSupplier.Builder createTrollAttributes() {
@@ -23,17 +24,7 @@ public class TrollEntity extends Animal {
     }
 
     @Override
-    public boolean isFood(final ItemStack itemStack) {
-        return itemStack.is(MysticalCreatures.TROLL_FOOD);
-    }
-
-    @Nullable
-    @Override
-    public AgeableMob getBreedOffspring(final @NotNull ServerLevel serverLevel, final @NotNull AgeableMob ageableMob) {
-        final AgeableMob offspring = MysticalCreatures.TROLL_ENTITY.get().create(serverLevel, EntitySpawnReason.BREEDING);
-        if (offspring != null) {
-            offspring.setBaby(true);
-        }
-        return offspring;
+    public void startPersistentAngerTimer() {
+        remainingPersistentAngerTime = TimeUtil.rangeOfSeconds(20, 39).sample(random);
     }
 }
