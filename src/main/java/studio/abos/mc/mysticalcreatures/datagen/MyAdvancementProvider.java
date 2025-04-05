@@ -3,6 +3,7 @@ package studio.abos.mc.mysticalcreatures.datagen;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
+import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.Criterion;
@@ -125,6 +126,7 @@ public class MyAdvancementProvider implements AdvancementSubProvider {
                         Name.HURT_BY_UNICORN,
                         Name.HURT_BY_TROLL)))
                 .save(consumer, MysticalCreatures.of(Name.ADV_ROOT));
+        // collector
         Advancement.Builder.advancement()
                 .parent(root)
                 .display(
@@ -145,6 +147,7 @@ public class MyAdvancementProvider implements AdvancementSubProvider {
                         Name.PICKUP_UNICORN_HORN,
                         Name.PICKUP_TROLL_HEART)))
                 .save(consumer, MysticalCreatures.of(Name.ADV_COLLECTOR));
+        // breeder
         Advancement.Builder.advancement()
                 .parent(root)
                 .display(
@@ -152,9 +155,10 @@ public class MyAdvancementProvider implements AdvancementSubProvider {
                         Component.translatable(title(Name.ADV_BREEDER)),
                         Component.translatable(desc(Name.ADV_BREEDER)),
                         null,
-                        AdvancementType.GOAL,
-                        true, false, false
+                        AdvancementType.CHALLENGE,
+                        true, true, false
                 )
+                .rewards(AdvancementRewards.Builder.experience(1000))
                 .addCriterion(Name.BREED_PHOENIX, breedPhoenix)
                 .addCriterion(Name.BREED_JACKALOPE, breedJackalope)
                 .addCriterion(Name.BREED_UNICORN, breedUnicorn)
@@ -165,6 +169,7 @@ public class MyAdvancementProvider implements AdvancementSubProvider {
                         Name.BREED_UNICORN,
                         Name.BREED_TROLL)))
                 .save(consumer, MysticalCreatures.of(Name.ADV_BREEDER));
+        // hunter
         Advancement.Builder.advancement()
                 .parent(root)
                 .display(
@@ -185,6 +190,7 @@ public class MyAdvancementProvider implements AdvancementSubProvider {
                         Name.KILL_UNICORN,
                         Name.KILL_TROLL)))
                 .save(consumer, MysticalCreatures.of(Name.ADV_HUNTER));
+        // alchemist
         Advancement.Builder.advancement()
                 .parent(root)
                 .display(
