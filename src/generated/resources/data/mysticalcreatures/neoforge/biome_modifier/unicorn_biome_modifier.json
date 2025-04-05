@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#mysticalcreatures:unicorn_spawns_on",
+  "spawners": {
+    "type": "mysticalcreatures:unicorn",
+    "maxCount": 2,
+    "minCount": 1,
+    "weight": 1
+  }
+}

@@ -63,4 +63,10 @@ public interface Name {
     String LM_OUTPOST = "outpost_loot_modifier";
     String LM_MANSION = "mansion_loot_modifier";
     String LM_ANCIENT_CITY = "ancient_city_loot_modifier";
+
+    // biome modifiers
+    String BM_PHOENIX = PHOENIX + "_biome_modifier";
+    String BM_JACKALOPE = JACKALOPE + "_biome_modifier";
+    String BM_UNICORN = UNICORN + "_biome_modifier";
+    String BM_TROLL = TROLL + "_biome_modifier";
 }

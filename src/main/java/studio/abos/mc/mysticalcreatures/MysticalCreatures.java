@@ -3,15 +3,23 @@ package studio.abos.mc.mysticalcreatures;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.alchemy.Potion;
@@ -19,12 +27,17 @@ import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
+import net.neoforged.neoforge.common.world.BiomeModifier;
+import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.slf4j.Logger;
 
@@ -176,6 +189,15 @@ public class MysticalCreatures
     public static final Supplier<MapCodec<SimpleLootModifier>> SIMPLE_LOOT_MODIFIER =
             GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(Name.LM_SIMPLE, () -> SimpleLootModifier.CODEC);
 
+    public static final ResourceKey<BiomeModifier> PHOENIX_BIOME_MODIFIER =
+            ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, of(Name.BM_PHOENIX));
+    public static final ResourceKey<BiomeModifier> JACKALOPE_BIOME_MODIFIER =
+            ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, of(Name.BM_JACKALOPE));
+    public static final ResourceKey<BiomeModifier> UNICORN_BIOME_MODIFIER =
+            ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, of(Name.BM_UNICORN));
+    public static final ResourceKey<BiomeModifier> TROLL_BIOME_MODIFIER =
+            ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, of(Name.BM_TROLL));
+
     public static final ModelLayerLocation PHOENIX_LAYER = new ModelLayerLocation(of(Name.PHOENIX), "head");
     public static final ModelLayerLocation JACKALOPE_LAYER = new ModelLayerLocation(of(Name.JACKALOPE), "head");
     public static final ModelLayerLocation UNICORN_LAYER = new ModelLayerLocation(of(Name.UNICORN), "head");
@@ -251,6 +273,7 @@ public class MysticalCreatures
         NeoForge.EVENT_BUS.register(this);
 
         modEventBus.addListener(this::onAttributeCreation);
+        modEventBus.addListener(this::registerSpawnPlacements);
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -294,6 +317,13 @@ public class MysticalCreatures
         event.put(JACKALOPE_ENTITY.get(), JackalopeEntity.createJackalopeAttributes().build());
         event.put(UNICORN_ENTITY.get(), UnicornEntity.createUnicornAttributes().build());
         event.put(TROLL_ENTITY.get(), TrollEntity.createTrollAttributes().build());
+    }
+
+    public void registerSpawnPlacements(final RegisterSpawnPlacementsEvent event) {
+        event.register(PHOENIX_ENTITY.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(JACKALOPE_ENTITY.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(UNICORN_ENTITY.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(TROLL_ENTITY.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 
     @SubscribeEvent
@@ -358,6 +388,20 @@ public class MysticalCreatures
             event.createProvider((output, lookupProvider) ->
                     new LootTableProvider(output, Set.of(), List.of(new LootTableProvider.SubProviderEntry(MyEntityLootTableProvider::new, LootContextParamSets.ENTITY)), lookupProvider));
             event.createProvider(MyGlobalLootModifierProvider::new);
+            // biome modifiers
+            final RegistrySetBuilder builder = new RegistrySetBuilder();
+            builder.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, bootstrap -> {
+                HolderGetter<Biome> biomes = bootstrap.lookup(Registries.BIOME);
+                bootstrap.register(PHOENIX_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(PHOENIX_SPAWNS_ON),
+                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(PHOENIX_ENTITY.get(), 1, 4)).build()));
+                bootstrap.register(JACKALOPE_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(JACKALOPE_SPAWNS_ON),
+                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(JACKALOPE_ENTITY.get(), 1, 4)).build()));
+                bootstrap.register(UNICORN_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(UNICORN_SPAWNS_ON),
+                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(UNICORN_ENTITY.get(), 1, 2)).build()));
+                bootstrap.register(TROLL_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(TROLL_SPAWNS_ON),
+                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(TROLL_ENTITY.get(), 1, 3)).build()));
+            });
+            event.createDatapackRegistryObjects(builder);
         }
     }
 }

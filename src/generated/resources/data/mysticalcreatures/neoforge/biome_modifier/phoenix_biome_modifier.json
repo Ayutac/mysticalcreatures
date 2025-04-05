@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#mysticalcreatures:phoenix_spawns_on",
+  "spawners": {
+    "type": "mysticalcreatures:phoenix",
+    "maxCount": 4,
+    "minCount": 1,
+    "weight": 1
+  }
+}

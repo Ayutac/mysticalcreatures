@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#mysticalcreatures:troll_spawns_on",
+  "spawners": {
+    "type": "mysticalcreatures:troll",
+    "maxCount": 3,
+    "minCount": 1,
+    "weight": 1
+  }
+}

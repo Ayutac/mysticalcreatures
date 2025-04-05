@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#mysticalcreatures:jackalope_spawns_on",
+  "spawners": {
+    "type": "mysticalcreatures:jackalope",
+    "maxCount": 4,
+    "minCount": 1,
+    "weight": 1
+  }
+}
