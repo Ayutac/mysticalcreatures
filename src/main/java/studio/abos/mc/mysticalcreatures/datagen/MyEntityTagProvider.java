@@ -17,7 +17,13 @@ public class MyEntityTagProvider extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(final @NotNull HolderLookup.Provider lookupProvider) {
+        tag(MysticalCreatures.PHOENIX_AVOIDS).add(EntityType.BLAZE);
         tag(MysticalCreatures.JACKALOPE_AVOIDS).add(EntityType.WOLF);
+        tag(MysticalCreatures.UNICORN_AVOIDS).add(MysticalCreatures.TROLL_ENTITY.get());
+        tag(MysticalCreatures.TROLL_AVOIDS);
+        tag(MysticalCreatures.PHOENIX_HUNTS).add(EntityType.CHICKEN);
         tag(MysticalCreatures.JACKALOPE_HUNTS).add(EntityType.RABBIT);
+        tag(MysticalCreatures.UNICORN_HUNTS);
+        tag(MysticalCreatures.TROLL_HUNTS).add(EntityType.COW);
     }
 }

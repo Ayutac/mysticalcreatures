@@ -109,9 +109,15 @@ public class MysticalCreatures
     public static final TagKey<Item> TROLL_FOOD = TagKey.create(Registries.ITEM, of(Name.TROLL + _FOOD));
 
     private static final String _AVOIDS = "_avoids";
+    public static final TagKey<EntityType<?>> PHOENIX_AVOIDS = TagKey.create(Registries.ENTITY_TYPE, of(Name.PHOENIX + _AVOIDS));
     public static final TagKey<EntityType<?>> JACKALOPE_AVOIDS = TagKey.create(Registries.ENTITY_TYPE, of(Name.JACKALOPE + _AVOIDS));
+    public static final TagKey<EntityType<?>> UNICORN_AVOIDS = TagKey.create(Registries.ENTITY_TYPE, of(Name.UNICORN + _AVOIDS));
+    public static final TagKey<EntityType<?>> TROLL_AVOIDS = TagKey.create(Registries.ENTITY_TYPE, of(Name.TROLL + _AVOIDS));
     private static final String _HUNTS = "_hunts";
+    public static final TagKey<EntityType<?>> PHOENIX_HUNTS = TagKey.create(Registries.ENTITY_TYPE, of(Name.PHOENIX + _HUNTS));
     public static final TagKey<EntityType<?>> JACKALOPE_HUNTS = TagKey.create(Registries.ENTITY_TYPE, of(Name.JACKALOPE + _HUNTS));
+    public static final TagKey<EntityType<?>> UNICORN_HUNTS = TagKey.create(Registries.ENTITY_TYPE, of(Name.UNICORN + _HUNTS));
+    public static final TagKey<EntityType<?>> TROLL_HUNTS = TagKey.create(Registries.ENTITY_TYPE, of(Name.TROLL + _HUNTS));
 
     private static final String _SPAWNS_ON = "_spawns_on";
     public static final TagKey<Biome> PHOENIX_SPAWNS_ON = TagKey.create(Registries.BIOME, of(Name.PHOENIX + _SPAWNS_ON));
