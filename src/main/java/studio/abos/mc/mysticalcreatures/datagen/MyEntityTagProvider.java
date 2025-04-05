@@ -3,6 +3,7 @@ package studio.abos.mc.mysticalcreatures.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
 import org.jetbrains.annotations.NotNull;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
@@ -25,5 +26,9 @@ public class MyEntityTagProvider extends EntityTypeTagsProvider {
         tag(MysticalCreatures.JACKALOPE_HUNTS).add(EntityType.RABBIT);
         tag(MysticalCreatures.UNICORN_HUNTS);
         tag(MysticalCreatures.TROLL_HUNTS).add(EntityType.COW);
+
+        tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(MysticalCreatures.PHOENIX_ENTITY.get());
+        tag(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES).add(MysticalCreatures.PHOENIX_ENTITY.get());
+        tag(EntityTypeTags.POWDER_SNOW_WALKABLE_MOBS).add(MysticalCreatures.JACKALOPE_ENTITY.get());
     }
 }
