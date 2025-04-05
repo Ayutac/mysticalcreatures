@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -12,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
 
@@ -29,10 +31,13 @@ public class PhoenixEntity extends Animal {
         return itemStack.is(MysticalCreatures.PHOENIX_FOOD);
     }
 
+    @Nullable
     @Override
-    public @Nullable AgeableMob getBreedOffspring(final ServerLevel serverLevel, final AgeableMob ageableMob) {
-        final AgeableMob offspring = new PhoenixEntity(MysticalCreatures.PHOENIX_ENTITY.get(), serverLevel);
-        offspring.setBaby(true);
+    public AgeableMob getBreedOffspring(final @NotNull ServerLevel serverLevel, final @NotNull AgeableMob ageableMob) {
+        final AgeableMob offspring = MysticalCreatures.PHOENIX_ENTITY.get().create(serverLevel, EntitySpawnReason.BREEDING);
+        if (offspring != null) {
+            offspring.setBaby(true);
+        }
         return offspring;
     }
 

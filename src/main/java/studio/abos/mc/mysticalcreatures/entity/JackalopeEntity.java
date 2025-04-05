@@ -3,6 +3,7 @@ package studio.abos.mc.mysticalcreatures.entity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -13,8 +14,6 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Rabbit;
-import net.minecraft.world.entity.animal.wolf.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -47,10 +46,13 @@ public class JackalopeEntity extends Animal {
         this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Player.class, 10.0F));
     }
 
+    @Nullable
     @Override
-    public @Nullable AgeableMob getBreedOffspring(final @NotNull ServerLevel serverLevel, final @NotNull AgeableMob ageableMob) {
-        final AgeableMob offspring = new JackalopeEntity(MysticalCreatures.JACKALOPE_ENTITY.get(), serverLevel);
-        offspring.setBaby(true);
+    public AgeableMob getBreedOffspring(final @NotNull ServerLevel serverLevel, final @NotNull AgeableMob ageableMob) {
+        final AgeableMob offspring = MysticalCreatures.JACKALOPE_ENTITY.get().create(serverLevel, EntitySpawnReason.BREEDING);
+        if (offspring != null) {
+            offspring.setBaby(true);
+        }
         return offspring;
     }
 }
