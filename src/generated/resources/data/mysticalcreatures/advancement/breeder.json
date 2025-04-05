@@ -59,11 +59,10 @@
     }
   },
   "display": {
-    "announce_to_chat": false,
     "description": {
       "translate": "advancements.mysticalcreatures.breeder.description"
     },
-    "frame": "goal",
+    "frame": "challenge",
     "icon": {
       "count": 1,
       "id": "mysticalcreatures:jackalope_antlers"
@@ -86,5 +85,8 @@
       "breed_troll"
     ]
   ],
+  "rewards": {
+    "experience": 1000
+  },
   "sends_telemetry_event": true
 }
