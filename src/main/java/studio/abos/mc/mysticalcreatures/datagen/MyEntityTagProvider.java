@@ -28,6 +28,7 @@ public class MyEntityTagProvider extends EntityTypeTagsProvider {
         tag(MysticalCreatures.TROLL_HUNTS).add(EntityType.COW);
 
         tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(MysticalCreatures.PHOENIX_ENTITY.get());
+        tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(MysticalCreatures.JACKALOPE_ENTITY.get());
         tag(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES).add(MysticalCreatures.PHOENIX_ENTITY.get());
         tag(EntityTypeTags.POWDER_SNOW_WALKABLE_MOBS).add(MysticalCreatures.JACKALOPE_ENTITY.get());
     }

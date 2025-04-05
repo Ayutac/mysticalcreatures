@@ -9,6 +9,7 @@ import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -99,6 +100,7 @@ public class MysticalCreatures
     public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(Registries.POTION, Name.MODID);
     public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> GLOBAL_LOOT_MODIFIER_SERIALIZERS =
             DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Name.MODID);
+    public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(Registries.SOUND_EVENT, Name.MODID);
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Name.MODID);
 
@@ -171,7 +173,7 @@ public class MysticalCreatures
                     .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.PHOENIX))));
     public static final Supplier<EntityType<JackalopeEntity>> JACKALOPE_ENTITY = ENTITY_TYPES.register(Name.JACKALOPE,
             () -> EntityType.Builder.of(JackalopeEntity::new, MobCategory.CREATURE)
-                    .sized(1f, 1f)
+                    .sized(0.4f, 0.5f)
                     .clientTrackingRange(8)
                     .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.JACKALOPE))));
     public static final Supplier<EntityType<UnicornEntity>> UNICORN_ENTITY = ENTITY_TYPES.register(Name.UNICORN,
@@ -207,10 +209,14 @@ public class MysticalCreatures
     public static final ResourceKey<BiomeModifier> TROLL_BIOME_MODIFIER =
             ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, of(Name.BM_TROLL));
 
+    private static final String _BABY = "_baby";
     public static final ModelLayerLocation PHOENIX_LAYER = new ModelLayerLocation(of(Name.PHOENIX), "head");
     public static final ModelLayerLocation JACKALOPE_LAYER = new ModelLayerLocation(of(Name.JACKALOPE), "head");
+    public static final ModelLayerLocation JACKALOPE_BABY_LAYER = new ModelLayerLocation(of(Name.JACKALOPE + _BABY), "head");
     public static final ModelLayerLocation UNICORN_LAYER = new ModelLayerLocation(of(Name.UNICORN), "head");
     public static final ModelLayerLocation TROLL_LAYER = new ModelLayerLocation(of(Name.TROLL), "head");
+
+    //public static final Holder<SoundEvent> MY_SOUND = SOUNDS.register("entity." + Name.JACKALOPE + ".ambient", SoundEvent::createVariableRangeEvent);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register(Name.MODID, () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup." + Name.MODID)) //The language key for the title of your CreativeModeTab
@@ -274,11 +280,11 @@ public class MysticalCreatures
         ENTITY_TYPES.register(modEventBus);
         POTIONS.register(modEventBus);
         GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
+        SOUNDS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (MysticalCreatures) to respond directly to events.
-        // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
         modEventBus.addListener(this::onAttributeCreation);
@@ -366,7 +372,8 @@ public class MysticalCreatures
         @SubscribeEvent
         public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(PHOENIX_LAYER, PhoenixModel::createBodyLayer);
-            event.registerLayerDefinition(JACKALOPE_LAYER, JackalopeModel::createBodyLayer);
+            event.registerLayerDefinition(JACKALOPE_LAYER, () -> JackalopeModel.createBodyLayer(false));
+            event.registerLayerDefinition(JACKALOPE_BABY_LAYER, () -> JackalopeModel.createBodyLayer(true));
             event.registerLayerDefinition(UNICORN_LAYER, UnicornModel::createBodyLayer);
             event.registerLayerDefinition(TROLL_LAYER, TrollModel::createBodyLayer);
         }
