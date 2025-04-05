@@ -3,7 +3,7 @@
   "biomes": "#mysticalcreatures:jackalope_spawns_on",
   "spawners": {
     "type": "mysticalcreatures:jackalope",
-    "maxCount": 4,
+    "maxCount": 1,
     "minCount": 1,
     "weight": 1
   }

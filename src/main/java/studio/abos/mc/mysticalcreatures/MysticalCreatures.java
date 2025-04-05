@@ -4,7 +4,6 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.loot.LootTableProvider;
@@ -17,9 +16,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacementTypes;
-import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.alchemy.Potion;
@@ -166,12 +163,12 @@ public class MysticalCreatures
                     .clientTrackingRange(8)
                     .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.JACKALOPE))));
     public static final Supplier<EntityType<UnicornEntity>> UNICORN_ENTITY = ENTITY_TYPES.register(Name.UNICORN,
-            () -> EntityType.Builder.of(UnicornEntity::new, MobCategory.MONSTER)
+            () -> EntityType.Builder.of(UnicornEntity::new, MobCategory.CREATURE)
                     .sized(1f, 1f)
                     .clientTrackingRange(8)
                     .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.UNICORN))));
     public static final Supplier<EntityType<TrollEntity>> TROLL_ENTITY = ENTITY_TYPES.register(Name.TROLL,
-            () -> EntityType.Builder.of(TrollEntity::new, MobCategory.MONSTER)
+            () -> EntityType.Builder.of(TrollEntity::new, MobCategory.CREATURE)
                     .sized(1f, 1f)
                     .clientTrackingRange(8)
                     .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.TROLL))));
@@ -393,13 +390,13 @@ public class MysticalCreatures
             builder.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, bootstrap -> {
                 HolderGetter<Biome> biomes = bootstrap.lookup(Registries.BIOME);
                 bootstrap.register(PHOENIX_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(PHOENIX_SPAWNS_ON),
-                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(PHOENIX_ENTITY.get(), 1, 4)).build()));
+                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(PHOENIX_ENTITY.get(), 1, 1)).build()));
                 bootstrap.register(JACKALOPE_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(JACKALOPE_SPAWNS_ON),
-                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(JACKALOPE_ENTITY.get(), 1, 4)).build()));
+                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(JACKALOPE_ENTITY.get(), 1, 1)).build()));
                 bootstrap.register(UNICORN_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(UNICORN_SPAWNS_ON),
-                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(UNICORN_ENTITY.get(), 1, 2)).build()));
+                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(UNICORN_ENTITY.get(), 1, 1)).build()));
                 bootstrap.register(TROLL_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(TROLL_SPAWNS_ON),
-                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(TROLL_ENTITY.get(), 1, 3)).build()));
+                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(TROLL_ENTITY.get(), 1, 1)).build()));
             });
             event.createDatapackRegistryObjects(builder);
         }

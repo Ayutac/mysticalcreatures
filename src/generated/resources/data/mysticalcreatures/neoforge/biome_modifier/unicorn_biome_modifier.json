@@ -3,7 +3,7 @@
   "biomes": "#mysticalcreatures:unicorn_spawns_on",
   "spawners": {
     "type": "mysticalcreatures:unicorn",
-    "maxCount": 2,
+    "maxCount": 1,
     "minCount": 1,
     "weight": 1
   }
