@@ -71,6 +71,7 @@ import studio.abos.mc.mysticalcreatures.client.render.entity.UnicornRenderer;
 import studio.abos.mc.mysticalcreatures.datagen.MyAdvancementProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyBiomeTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyBlockTagProvider;
+import studio.abos.mc.mysticalcreatures.datagen.MyEntityTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyGlobalLootModifierProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyItemTagProvider;
 import studio.abos.mc.mysticalcreatures.datagen.MyLanguageProvider;
@@ -106,6 +107,9 @@ public class MysticalCreatures
     public static final TagKey<Item> JACKALOPE_FOOD = TagKey.create(Registries.ITEM, of(Name.JACKALOPE + _FOOD));
     public static final TagKey<Item> UNICORN_FOOD = TagKey.create(Registries.ITEM, of(Name.UNICORN + _FOOD));
     public static final TagKey<Item> TROLL_FOOD = TagKey.create(Registries.ITEM, of(Name.TROLL + _FOOD));
+
+    private static final String _AVOIDS = "_avoids";
+    public static final TagKey<EntityType<?>> JACKALOPE_AVOIDS = TagKey.create(Registries.ENTITY_TYPE, of(Name.JACKALOPE + _AVOIDS));
 
     private static final String _SPAWNS_ON = "_spawns_on";
     public static final TagKey<Biome> PHOENIX_SPAWNS_ON = TagKey.create(Registries.BIOME, of(Name.PHOENIX + _SPAWNS_ON));
@@ -375,6 +379,7 @@ public class MysticalCreatures
         public static void gatherData(GatherDataEvent.Client event) {
             // tags first
             event.createBlockAndItemTags(MyBlockTagProvider::new, MyItemTagProvider::new);
+            event.createProvider(MyEntityTagProvider::new);
             event.createProvider(MyBiomeTagProvider::new);
             // misc
             event.createProvider(MyLanguageProvider::new);
