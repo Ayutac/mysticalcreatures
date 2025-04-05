@@ -1,60 +1,84 @@
 package studio.abos.mc.mysticalcreatures.client.model.entity;
 
+import net.minecraft.client.model.BabyModelTransform;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.MeshTransformer;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import studio.abos.mc.mysticalcreatures.client.render.state.PhoenixRenderState;
 
+import java.util.Set;
+
 @OnlyIn(Dist.CLIENT)
 public class PhoenixModel extends EntityModel<PhoenixRenderState> {
+    public static final String RED_THING = "red_thing";
+    public static final float Y_OFFSET = 16.0f;
+    public static final MeshTransformer BABY_TRANSFORMER = new BabyModelTransform(false, 5.0f, 2.0f, 2.0f, 1.99f, 24.0f, Set.of("head", "beak", "red_thing"));
+    private final ModelPart head;
+    private final ModelPart rightLeg;
+    private final ModelPart leftLeg;
+    private final ModelPart rightWing;
+    private final ModelPart leftWing;
 
     public PhoenixModel(ModelPart root) {
         super(root);
+        this.head = root.getChild("head");
+        this.rightLeg = root.getChild("right_leg");
+        this.leftLeg = root.getChild("left_leg");
+        this.rightWing = root.getChild("right_wing");
+        this.leftWing = root.getChild("left_wing");
     }
 
-    public static LayerDefinition createBodyLayer() {
-        MeshDefinition mesh = new MeshDefinition();
-        // The mesh initially contains no object other than the root, which is invisible (has a size of 0x0x0).
-        PartDefinition root = mesh.getRoot();
-        // We add a head part.
-        PartDefinition head = root.addOrReplaceChild(
-                // The name of the part.
-                "head",
-                // The CubeListBuilder we want to add.
-                CubeListBuilder.create()
-                        // The UV coordinates to use within the texture. Texture binding itself is explained below.
-                        // In this example, we start at U=10, V=20.
-                        .texOffs(10, 20)
-                        // Add our cube. May be called multiple times to add multiple cubes.
-                        // This is relative to the parent part. For the root part, it is relative to the entity's position.
-                        // Be aware that the y axis is flipped, i.e. "up" is subtractive and "down" is additive.
-                        .addBox(
-                                // The top-left-back corner of the cube, relative to the parent object's position.
-                                -5, -5, -5,
-                                // The size of the cube.
-                                10, 10, 10
-                        )
-                        // Call texOffs and addBox again to add another cube.
-                        .texOffs(30, 40)
-                        .addBox(-1, -1, -1, 1, 1, 1),
-                // The initial positioning to apply to all elements of the CubeListBuilder. Besides PartPose#offset,
-                // PartPose#offsetAndRotation is also available. This can be reused across multiple PartDefinitions.
-                // This may not be used by all models. For example, making custom armor layers will use the associated
-                // player (or other humanoid) renderer's PartPose instead to have the armor "snap" to the player model.
-                PartPose.offset(0, 8, 0)
+    public static LayerDefinition createBodyLayer(boolean baby) {
+        MeshDefinition meshdefinition = createBasePhoenixModel();
+        if (baby) {
+            return LayerDefinition.create(meshdefinition, 64, 32).apply(BABY_TRANSFORMER);
+        }
+        return LayerDefinition.create(meshdefinition, 64, 32);
+    }
+
+    protected static MeshDefinition createBasePhoenixModel() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        PartDefinition partdefinition1 = partdefinition.addOrReplaceChild(
+                "head", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0f, -6.0f, -2.0f, 4.0f, 6.0f, 3.0f), PartPose.offset(0.0f, 15.0f, -4.0f)
         );
-        // We can now add children to any PartDefinition, thus creating a hierarchy.
-//        PartDefinition part1 = root.addOrReplaceChild(...);
-//        PartDefinition part2 = head.addOrReplaceChild(...);
-//        PartDefinition part3 = part1.addOrReplaceChild(...);
-        // At the end, we create a LayerDefinition from the MeshDefinition.
-        // The two integers are the expected dimensions of the texture; 64x32 in our example.
-        return LayerDefinition.create(mesh, 64, 32);
+        partdefinition1.addOrReplaceChild("beak", CubeListBuilder.create().texOffs(14, 0).addBox(-2.0f, -4.0f, -4.0f, 4.0f, 2.0f, 2.0f), PartPose.ZERO);
+        partdefinition1.addOrReplaceChild("red_thing", CubeListBuilder.create().texOffs(14, 4).addBox(-1.0f, -2.0f, -3.0f, 2.0f, 2.0f, 2.0f), PartPose.ZERO);
+        partdefinition.addOrReplaceChild(
+                "body",
+                CubeListBuilder.create().texOffs(0, 9).addBox(-3.0f, -4.0f, -3.0f, 6.0f, 8.0f, 6.0f),
+                PartPose.offsetAndRotation(0.0f, 16.0f, 0.0f, (float) (Math.PI / 2), 0.0f, 0.0f)
+        );
+        CubeListBuilder cubelistbuilder = CubeListBuilder.create().texOffs(26, 0).addBox(-1.0f, 0.0f, -3.0f, 3.0f, 5.0f, 3.0f);
+        partdefinition.addOrReplaceChild("right_leg", cubelistbuilder, PartPose.offset(-2.0f, 19.0f, 1.0f));
+        partdefinition.addOrReplaceChild("left_leg", cubelistbuilder, PartPose.offset(1.0f, 19.0f, 1.0f));
+        partdefinition.addOrReplaceChild(
+                "right_wing", CubeListBuilder.create().texOffs(24, 13).addBox(0.0f, 0.0f, -3.0f, 1.0f, 4.0f, 6.0f), PartPose.offset(-4.0f, 13.0f, 0.0f)
+        );
+        partdefinition.addOrReplaceChild(
+                "left_wing", CubeListBuilder.create().texOffs(24, 13).addBox(-1.0f, 0.0f, -3.0f, 1.0f, 4.0f, 6.0f), PartPose.offset(4.0f, 13.0f, 0.0f)
+        );
+        return meshdefinition;
+    }
+
+    public void setupAnim(PhoenixRenderState renderState) {
+        super.setupAnim(renderState);
+        float f = (Mth.sin(renderState.getFlap()) + 1f) * renderState.getFlapSpeed();
+        this.head.xRot = renderState.xRot * (float) (Math.PI / 180.0);
+        this.head.yRot = renderState.yRot * (float) (Math.PI / 180.0);
+        float f1 = renderState.walkAnimationSpeed;
+        float f2 = renderState.walkAnimationPos;
+        this.rightLeg.xRot = Mth.cos(f2 * 0.6662f) * 1.4f * f1;
+        this.leftLeg.xRot = Mth.cos(f2 * 0.6662f + (float) Math.PI) * 1.4f * f1;
+        this.rightWing.zRot = f;
+        this.leftWing.zRot = -f;
     }
 }

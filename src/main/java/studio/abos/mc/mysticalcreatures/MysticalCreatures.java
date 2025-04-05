@@ -212,6 +212,7 @@ public class MysticalCreatures
 
     private static final String _BABY = "_baby";
     public static final ModelLayerLocation PHOENIX_LAYER = new ModelLayerLocation(of(Name.PHOENIX), "head");
+    public static final ModelLayerLocation PHOENIX_BABY_LAYER = new ModelLayerLocation(of(Name.PHOENIX + _BABY), "head");
     public static final ModelLayerLocation JACKALOPE_LAYER = new ModelLayerLocation(of(Name.JACKALOPE), "head");
     public static final ModelLayerLocation JACKALOPE_BABY_LAYER = new ModelLayerLocation(of(Name.JACKALOPE + _BABY), "head");
     public static final ModelLayerLocation UNICORN_LAYER = new ModelLayerLocation(of(Name.UNICORN), "head");
@@ -376,7 +377,8 @@ public class MysticalCreatures
         }
         @SubscribeEvent
         public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-            event.registerLayerDefinition(PHOENIX_LAYER, PhoenixModel::createBodyLayer);
+            event.registerLayerDefinition(PHOENIX_LAYER, () -> PhoenixModel.createBodyLayer(false));
+            event.registerLayerDefinition(PHOENIX_BABY_LAYER, () -> PhoenixModel.createBodyLayer(true));
             event.registerLayerDefinition(JACKALOPE_LAYER, () -> JackalopeModel.createBodyLayer(false));
             event.registerLayerDefinition(JACKALOPE_BABY_LAYER, () -> JackalopeModel.createBodyLayer(true));
             event.registerLayerDefinition(UNICORN_LAYER, UnicornModel::createBodyLayer);
