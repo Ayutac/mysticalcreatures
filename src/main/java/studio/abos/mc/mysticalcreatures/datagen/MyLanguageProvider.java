@@ -61,6 +61,7 @@ public class MyLanguageProvider extends LanguageProvider {
         // sound subtitles
         add(Name.ST_PHOENIX_AMBIENT, "Phoenix clucks");
         add(Name.ST_PHOENIX_ATTACK, "Phoenix attacks");
+        add(Name.ST_PHOENIX_SHOOTS, "Phoenix shoots");
         add(Name.ST_PHOENIX_DEATH, "Phoenix dies");
         add(Name.ST_PHOENIX_HURT, "Phoenix hurts");
         add(Name.ST_PHOENIX_STEP, "Footsteps");

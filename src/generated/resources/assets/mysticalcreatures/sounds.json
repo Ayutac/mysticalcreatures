@@ -206,19 +206,28 @@
     ],
     "subtitle": "subtitles.entity.mysticalcreatures.phoenix.hurt"
   },
+  "entity.phoenix.shoot": {
+    "sounds": [
+      {
+        "name": "mob/chicken/plop",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.entity.mysticalcreatures.phoenix.shoot"
+  },
   "entity.phoenix.step": {
     "sounds": [
       {
         "name": "mob/chicken/step1",
         "preload": true,
-        "stream": true,
-        "volume": 0.15
+        "stream": true
       },
       {
         "name": "mob/chicken/step2",
         "preload": true,
-        "stream": true,
-        "volume": 0.15
+        "stream": true
       }
     ],
     "subtitle": "subtitles.entity.mysticalcreatures.phoenix.step"

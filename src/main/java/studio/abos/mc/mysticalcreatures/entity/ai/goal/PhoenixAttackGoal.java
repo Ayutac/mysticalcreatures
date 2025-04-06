@@ -1,10 +1,13 @@
 package studio.abos.mc.mysticalcreatures.entity.ai.goal;
 
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.phys.Vec3;
+import studio.abos.mc.mysticalcreatures.MysticalCreatures;
 import studio.abos.mc.mysticalcreatures.entity.PhoenixEntity;
 
 import java.util.EnumSet;
@@ -81,7 +84,7 @@ public class PhoenixAttackGoal extends Goal {
 
                     if (this.attackStep > 3) { // only one fireball
                         if (!this.phoenix.isSilent()) {
-                            this.phoenix.level().levelEvent(null, 1018, this.phoenix.blockPosition(), 0);
+                            this.phoenix.playSound(MysticalCreatures.PHOENIX_SHOOT_SOUND.value(), 2f, 1f);
                         }
                         Vec3 vec3 = new Vec3(d1, d2, d3);
                         SmallFireball smallfireball = new SmallFireball(this.phoenix.level(), this.phoenix, vec3.normalize());

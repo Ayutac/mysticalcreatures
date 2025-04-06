@@ -220,6 +220,7 @@ public class MysticalCreatures
 
     public static final Holder<SoundEvent> PHOENIX_AMBIENT_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".ambient", SoundEvent::createVariableRangeEvent);
     public static final Holder<SoundEvent> PHOENIX_ATTACK_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".attack", SoundEvent::createVariableRangeEvent);
+    public static final Holder<SoundEvent> PHOENIX_SHOOT_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".shoot", SoundEvent::createVariableRangeEvent);
     public static final Holder<SoundEvent> PHOENIX_DEATH_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".death", SoundEvent::createVariableRangeEvent);
     public static final Holder<SoundEvent> PHOENIX_HURT_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".hurt", SoundEvent::createVariableRangeEvent);
     public static final Holder<SoundEvent> PHOENIX_STEP_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".step", SoundEvent::createVariableRangeEvent);

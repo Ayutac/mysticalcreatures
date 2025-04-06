@@ -19,6 +19,8 @@ public class MySoundDefinitionsProvider extends SoundDefinitionsProvider {
                 sound("mob/chicken/say3", 1f, 1.2f)).subtitle(Name.ST_PHOENIX_AMBIENT));
         add(MysticalCreatures.PHOENIX_ATTACK_SOUND.value(), SoundDefinition.definition().with(
                 sound("mob/chicken/hurt1", 1f, 1.2f)).subtitle(Name.ST_PHOENIX_ATTACK));
+        add(MysticalCreatures.PHOENIX_SHOOT_SOUND.value(), SoundDefinition.definition().with(
+                sound("mob/chicken/plop", 1f, 1.2f)).subtitle(Name.ST_PHOENIX_SHOOTS));
         add(MysticalCreatures.PHOENIX_DEATH_SOUND.value(), SoundDefinition.definition().with(
                 sound("mob/chicken/hurt1", 1f, 1.2f),
                 sound("mob/chicken/hurt2", 1f, 1.2f)).subtitle(Name.ST_PHOENIX_DEATH));
