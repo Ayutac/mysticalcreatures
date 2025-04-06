@@ -59,6 +59,11 @@ public class MyLanguageProvider extends LanguageProvider {
         add(MyAdvancementProvider.desc(Name.ADV_ALCHEMIST), "So far nothing exploded.");
 
         // sound subtitles
+        add(Name.ST_PHOENIX_AMBIENT, "Phoenix clucks");
+        add(Name.ST_PHOENIX_ATTACK, "Phoenix attacks");
+        add(Name.ST_PHOENIX_DEATH, "Phoenix dies");
+        add(Name.ST_PHOENIX_HURT, "Phoenix hurts");
+        add(Name.ST_PHOENIX_STEP, "Footsteps");
         add(Name.ST_JACKALOPE_AMBIENT, "Jackalope squeaks");
         add(Name.ST_JACKALOPE_ATTACK, "Jackalope attacks");
         add(Name.ST_JACKALOPE_DEATH, "Jackalope dies");

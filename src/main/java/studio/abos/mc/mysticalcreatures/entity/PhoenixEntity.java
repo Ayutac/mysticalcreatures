@@ -7,7 +7,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
@@ -34,6 +33,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import studio.abos.mc.mysticalcreatures.MysticalCreatures;
 import studio.abos.mc.mysticalcreatures.entity.ai.goal.PhoenixAttackGoal;
 
@@ -98,22 +98,27 @@ public class PhoenixEntity extends AbstractMysticalCreature {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.CHICKEN_AMBIENT;
+        return MysticalCreatures.PHOENIX_AMBIENT_SOUND.value();
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return SoundEvents.CHICKEN_HURT;
+    protected void playAttackSound() {
+        playSound(MysticalCreatures.PHOENIX_ATTACK_SOUND.value(), 1f, 1f);
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.CHICKEN_DEATH;
+        return MysticalCreatures.PHOENIX_HURT_SOUND.value();
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, BlockState block) {
-        this.playSound(SoundEvents.CHICKEN_STEP, 0.15F, 1.0F);
+    protected SoundEvent getHurtSound(final @NotNull DamageSource damageSource) {
+        return MysticalCreatures.PHOENIX_HURT_SOUND.value();
+    }
+
+    @Override
+    protected void playStepSound(final @NotNull BlockPos pos, final @NotNull BlockState block) {
+        this.playSound(MysticalCreatures.PHOENIX_STEP_SOUND.value(), 0.15f, 1.0f);
     }
 
     public float getoFlap() {

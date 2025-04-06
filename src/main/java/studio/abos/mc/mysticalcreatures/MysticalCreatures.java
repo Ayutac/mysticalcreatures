@@ -218,6 +218,11 @@ public class MysticalCreatures
     public static final ModelLayerLocation UNICORN_LAYER = new ModelLayerLocation(of(Name.UNICORN), "head");
     public static final ModelLayerLocation TROLL_LAYER = new ModelLayerLocation(of(Name.TROLL), "head");
 
+    public static final Holder<SoundEvent> PHOENIX_AMBIENT_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".ambient", SoundEvent::createVariableRangeEvent);
+    public static final Holder<SoundEvent> PHOENIX_ATTACK_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".attack", SoundEvent::createVariableRangeEvent);
+    public static final Holder<SoundEvent> PHOENIX_DEATH_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".death", SoundEvent::createVariableRangeEvent);
+    public static final Holder<SoundEvent> PHOENIX_HURT_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".hurt", SoundEvent::createVariableRangeEvent);
+    public static final Holder<SoundEvent> PHOENIX_STEP_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".step", SoundEvent::createVariableRangeEvent);
     public static final Holder<SoundEvent> JACKALOPE_AMBIENT_SOUND = SOUNDS.register("entity." + Name.JACKALOPE + ".ambient", SoundEvent::createVariableRangeEvent);
     public static final Holder<SoundEvent> JACKALOPE_ATTACK_SOUND = SOUNDS.register("entity." + Name.JACKALOPE + ".attack", SoundEvent::createVariableRangeEvent);
     public static final Holder<SoundEvent> JACKALOPE_DEATH_SOUND = SOUNDS.register("entity." + Name.JACKALOPE + ".death", SoundEvent::createVariableRangeEvent);

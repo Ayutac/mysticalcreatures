@@ -73,6 +73,11 @@ public interface Name {
 
     // subtitles
     String ST = "subtitles.";
+    String ST_PHOENIX_AMBIENT = ST + "entity." + MODID + "." + PHOENIX + ".ambient";
+    String ST_PHOENIX_ATTACK = ST + "entity." + MODID + "." + PHOENIX + ".attack";
+    String ST_PHOENIX_DEATH = ST + "entity." + MODID + "." + PHOENIX + ".death";
+    String ST_PHOENIX_HURT = ST + "entity." + MODID + "." + PHOENIX + ".hurt";
+    String ST_PHOENIX_STEP = ST + "entity." + MODID + "." + PHOENIX + ".step";
     String ST_JACKALOPE_AMBIENT = ST + "entity." + MODID + "." + JACKALOPE + ".ambient";
     String ST_JACKALOPE_ATTACK = ST + "entity." + MODID + "." + JACKALOPE + ".attack";
     String ST_JACKALOPE_DEATH = ST + "entity." + MODID + "." + JACKALOPE + ".death";

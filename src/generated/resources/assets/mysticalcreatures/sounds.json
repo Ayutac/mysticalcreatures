@@ -137,5 +137,90 @@
       }
     ],
     "subtitle": "subtitles.entity.mysticalcreatures.jackalope.jump"
+  },
+  "entity.phoenix.ambient": {
+    "sounds": [
+      {
+        "name": "mob/chicken/say1",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      },
+      {
+        "name": "mob/chicken/say2",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      },
+      {
+        "name": "mob/chicken/say3",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.entity.mysticalcreatures.phoenix.ambient"
+  },
+  "entity.phoenix.attack": {
+    "sounds": [
+      {
+        "name": "mob/chicken/hurt1",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.entity.mysticalcreatures.phoenix.attack"
+  },
+  "entity.phoenix.death": {
+    "sounds": [
+      {
+        "name": "mob/chicken/hurt1",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      },
+      {
+        "name": "mob/chicken/hurt2",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.entity.mysticalcreatures.phoenix.death"
+  },
+  "entity.phoenix.hurt": {
+    "sounds": [
+      {
+        "name": "mob/chicken/hurt1",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      },
+      {
+        "name": "mob/chicken/hurt2",
+        "pitch": 1.2,
+        "preload": true,
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.entity.mysticalcreatures.phoenix.hurt"
+  },
+  "entity.phoenix.step": {
+    "sounds": [
+      {
+        "name": "mob/chicken/step1",
+        "preload": true,
+        "stream": true,
+        "volume": 0.15
+      },
+      {
+        "name": "mob/chicken/step2",
+        "preload": true,
+        "stream": true,
+        "volume": 0.15
+      }
+    ],
+    "subtitle": "subtitles.entity.mysticalcreatures.phoenix.step"
   }
 }

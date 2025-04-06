@@ -13,6 +13,21 @@ public class MySoundDefinitionsProvider extends SoundDefinitionsProvider {
 
     @Override
     public void registerSounds() {
+        add(MysticalCreatures.PHOENIX_AMBIENT_SOUND.value(), SoundDefinition.definition().with(
+                sound("mob/chicken/say1", 1f, 1.2f),
+                sound("mob/chicken/say2", 1f, 1.2f),
+                sound("mob/chicken/say3", 1f, 1.2f)).subtitle(Name.ST_PHOENIX_AMBIENT));
+        add(MysticalCreatures.PHOENIX_ATTACK_SOUND.value(), SoundDefinition.definition().with(
+                sound("mob/chicken/hurt1", 1f, 1.2f)).subtitle(Name.ST_PHOENIX_ATTACK));
+        add(MysticalCreatures.PHOENIX_DEATH_SOUND.value(), SoundDefinition.definition().with(
+                sound("mob/chicken/hurt1", 1f, 1.2f),
+                sound("mob/chicken/hurt2", 1f, 1.2f)).subtitle(Name.ST_PHOENIX_DEATH));
+        add(MysticalCreatures.PHOENIX_HURT_SOUND.value(), SoundDefinition.definition().with(
+                sound("mob/chicken/hurt1", 1f, 1.2f),
+                sound("mob/chicken/hurt2", 1f, 1.2f)).subtitle(Name.ST_PHOENIX_HURT));
+        add(MysticalCreatures.PHOENIX_STEP_SOUND.value(), SoundDefinition.definition().with(
+                sound("mob/chicken/step1", 1f, 1f),
+                sound("mob/chicken/step2", 1f, 1f)).subtitle(Name.ST_PHOENIX_STEP));
         // jackalope
         add(MysticalCreatures.JACKALOPE_AMBIENT_SOUND.value(), SoundDefinition.definition().with(
                 sound("mob/rabbit/idle1", 0.25f, 1.2f),

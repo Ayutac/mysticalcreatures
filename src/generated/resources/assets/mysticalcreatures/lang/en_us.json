@@ -62,5 +62,10 @@
   "subtitles.entity.mysticalcreatures.jackalope.attack": "Jackalope attacks",
   "subtitles.entity.mysticalcreatures.jackalope.death": "Jackalope dies",
   "subtitles.entity.mysticalcreatures.jackalope.hurt": "Jackalope hurts",
-  "subtitles.entity.mysticalcreatures.jackalope.jump": "Jackalope hops"
+  "subtitles.entity.mysticalcreatures.jackalope.jump": "Jackalope hops",
+  "subtitles.entity.mysticalcreatures.phoenix.ambient": "Phoenix clucks",
+  "subtitles.entity.mysticalcreatures.phoenix.attack": "Phoenix attacks",
+  "subtitles.entity.mysticalcreatures.phoenix.death": "Phoenix dies",
+  "subtitles.entity.mysticalcreatures.phoenix.hurt": "Phoenix hurts",
+  "subtitles.entity.mysticalcreatures.phoenix.step": "Footsteps"
 }
