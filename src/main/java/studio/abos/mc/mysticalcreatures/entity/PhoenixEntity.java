@@ -68,6 +68,9 @@ public class PhoenixEntity extends AbstractMysticalCreature {
             if (BaseFireBlock.canBePlacedAt(level(), firePos, Direction.UP)) {
                 level().setBlock(firePos, BaseFireBlock.getState(level(), firePos), 11);
             }
+            if (BaseFireBlock.canBePlacedAt(level(), firePos.below(), Direction.UP)) {
+                level().setBlock(firePos, BaseFireBlock.getState(level(), firePos.below()), 11);
+            }
         }
         super.tickDeath();
     }
