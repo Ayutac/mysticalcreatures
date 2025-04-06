@@ -168,9 +168,10 @@ public class MysticalCreatures
 
     public static final Supplier<EntityType<PhoenixEntity>> PHOENIX_ENTITY = ENTITY_TYPES.register(Name.PHOENIX,
             () -> EntityType.Builder.of(PhoenixEntity::new, MobCategory.CREATURE)
-                    .sized(1f, 1f)
+                    .sized(0.4F, 0.7F)
+                    .eyeHeight(0.644F)
+                    .clientTrackingRange(10)
                     .fireImmune()
-                    .clientTrackingRange(8)
                     .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.PHOENIX))));
     public static final Supplier<EntityType<JackalopeEntity>> JACKALOPE_ENTITY = ENTITY_TYPES.register(Name.JACKALOPE,
             () -> EntityType.Builder.of(JackalopeEntity::new, MobCategory.CREATURE)
@@ -179,8 +180,9 @@ public class MysticalCreatures
                     .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.JACKALOPE))));
     public static final Supplier<EntityType<UnicornEntity>> UNICORN_ENTITY = ENTITY_TYPES.register(Name.UNICORN,
             () -> EntityType.Builder.of(UnicornEntity::new, MobCategory.CREATURE)
-                    .sized(1f, 1f)
-                    .clientTrackingRange(8)
+                    .sized(1.3964844F, 1.6F)
+                    .eyeHeight(1.52F)
+                    .clientTrackingRange(10)
                     .build(ResourceKey.create(Registries.ENTITY_TYPE, of(Name.UNICORN))));
     public static final Supplier<EntityType<TrollEntity>> TROLL_ENTITY = ENTITY_TYPES.register(Name.TROLL,
             () -> EntityType.Builder.of(TrollEntity::new, MobCategory.CREATURE)
@@ -216,6 +218,7 @@ public class MysticalCreatures
     public static final ModelLayerLocation JACKALOPE_LAYER = new ModelLayerLocation(of(Name.JACKALOPE), "head");
     public static final ModelLayerLocation JACKALOPE_BABY_LAYER = new ModelLayerLocation(of(Name.JACKALOPE + _BABY), "head");
     public static final ModelLayerLocation UNICORN_LAYER = new ModelLayerLocation(of(Name.UNICORN), "head");
+    public static final ModelLayerLocation UNICORN_BABY_LAYER = new ModelLayerLocation(of(Name.UNICORN + _BABY), "head");
     public static final ModelLayerLocation TROLL_LAYER = new ModelLayerLocation(of(Name.TROLL), "head");
 
     public static final Holder<SoundEvent> PHOENIX_AMBIENT_SOUND = SOUNDS.register("entity." + Name.PHOENIX + ".ambient", SoundEvent::createVariableRangeEvent);
@@ -387,7 +390,8 @@ public class MysticalCreatures
             event.registerLayerDefinition(PHOENIX_BABY_LAYER, () -> PhoenixModel.createBodyLayer(true));
             event.registerLayerDefinition(JACKALOPE_LAYER, () -> JackalopeModel.createBodyLayer(false));
             event.registerLayerDefinition(JACKALOPE_BABY_LAYER, () -> JackalopeModel.createBodyLayer(true));
-            event.registerLayerDefinition(UNICORN_LAYER, UnicornModel::createBodyLayer);
+            event.registerLayerDefinition(UNICORN_LAYER, () -> UnicornModel.createBodyLayer(false));
+            event.registerLayerDefinition(UNICORN_BABY_LAYER, () -> UnicornModel.createBodyLayer(true));
             event.registerLayerDefinition(TROLL_LAYER, TrollModel::createBodyLayer);
         }
 

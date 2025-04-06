@@ -15,12 +15,12 @@ import studio.abos.mc.mysticalcreatures.entity.UnicornEntity;
 public class UnicornRenderer extends AgeableMobRenderer<UnicornEntity, UnicornRenderState, UnicornModel> {
 
     public UnicornRenderer(EntityRendererProvider.Context context) {
-        super(context, new UnicornModel(context.bakeLayer(MysticalCreatures.UNICORN_LAYER)), new UnicornModel(context.bakeLayer(MysticalCreatures.UNICORN_LAYER)), 0.5f);
+        super(context, new UnicornModel(context.bakeLayer(MysticalCreatures.UNICORN_LAYER)), new UnicornModel(context.bakeLayer(MysticalCreatures.UNICORN_BABY_LAYER)), 0.75f);
     }
 
     @Override
     public ResourceLocation getTextureLocation(UnicornRenderState UnicornRenderState) {
-        return MysticalCreatures.of(Name.UNICORN);
+        return MysticalCreatures.of("textures/entity/" + Name.UNICORN + ".png");
     }
 
     @Override
