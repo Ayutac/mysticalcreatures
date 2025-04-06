@@ -85,6 +85,7 @@ import studio.abos.mc.mysticalcreatures.entity.JackalopeEntity;
 import studio.abos.mc.mysticalcreatures.entity.PhoenixEntity;
 import studio.abos.mc.mysticalcreatures.entity.TrollEntity;
 import studio.abos.mc.mysticalcreatures.entity.UnicornEntity;
+import studio.abos.mc.mysticalcreatures.item.PhoenixFeather;
 
 import java.util.List;
 import java.util.Set;
@@ -136,7 +137,7 @@ public class MysticalCreatures
     // Creates a new BlockItem with the id "mysticalcreatures:example_block", combining the namespace and path
     // public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
 
-    public static final DeferredItem<Item> PHOENIX_FEATHER = ITEMS.registerSimpleItem(Name.PHOENIX_FEATHER, new Item.Properties().fireResistant());
+    public static final DeferredItem<Item> PHOENIX_FEATHER = ITEMS.registerItem(Name.PHOENIX_FEATHER, PhoenixFeather::new, new Item.Properties().fireResistant());
     public static final DeferredItem<Item> JACKALOPE_ANTLERS = ITEMS.registerSimpleItem(Name.JACKALOPE_ANTLERS, new Item.Properties());
     public static final DeferredItem<Item> UNICORN_HORN = ITEMS.registerSimpleItem(Name.UNICORN_HORN, new Item.Properties());
     public static final DeferredItem<Item> TROLL_HEART = ITEMS.registerSimpleItem(Name.TROLL_HEART, new Item.Properties());
