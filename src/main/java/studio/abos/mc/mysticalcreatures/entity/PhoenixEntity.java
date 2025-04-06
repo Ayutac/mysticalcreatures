@@ -53,9 +53,11 @@ public class PhoenixEntity extends AbstractMysticalCreature {
         return Animal.createAnimalAttributes()
                 .add(Attributes.MAX_HEALTH, 15d)
                 .add(Attributes.MOVEMENT_SPEED, 0.25d)
-                .add(Attributes.ATTACK_DAMAGE, 6d).add(Attributes.FOLLOW_RANGE, 24d);
+                .add(Attributes.ATTACK_DAMAGE, 6d)
+                .add(Attributes.FOLLOW_RANGE, 24d);
     }
 
+    // rebirth the phoenix
     @Override
     protected void tickDeath() {
         if (deathTime >= 19 && !level().isClientSide() && !isRemoved() && !isBaby()) {
