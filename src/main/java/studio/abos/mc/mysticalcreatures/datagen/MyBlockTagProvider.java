@@ -2,7 +2,9 @@ package studio.abos.mc.mysticalcreatures.datagen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import studio.abos.mc.mysticalcreatures.MysticalCreatures;
 import studio.abos.mc.mysticalcreatures.Name;
 
 import java.util.concurrent.CompletableFuture;
@@ -14,6 +16,6 @@ public class MyBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(final HolderLookup.Provider provider) {
-        // nothing to add
+        tag(MysticalCreatures.PHOENIX_SPAWNABLE_ON).add(Blocks.BASALT, Blocks.BLACKSTONE);
     }
 }

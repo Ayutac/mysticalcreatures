@@ -26,6 +26,7 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -104,6 +105,8 @@ public class MysticalCreatures
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(Registries.SOUND_EVENT, Name.MODID);
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Name.MODID);
+
+    public static final TagKey<Block> PHOENIX_SPAWNABLE_ON = TagKey.create(Registries.BLOCK, of(Name.PHOENIX + "_spawnable_on"));
 
     private static final String _FOOD = "_food";
     public static final TagKey<Item> PHOENIX_FOOD = TagKey.create(Registries.ITEM, of(Name.PHOENIX + _FOOD));
@@ -350,7 +353,7 @@ public class MysticalCreatures
     }
 
     public void registerSpawnPlacements(final RegisterSpawnPlacementsEvent event) {
-        event.register(PHOENIX_ENTITY.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(PHOENIX_ENTITY.get(), SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, PhoenixEntity::checkPhoenixSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(JACKALOPE_ENTITY.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(UNICORN_ENTITY.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(TROLL_ENTITY.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
@@ -428,7 +431,7 @@ public class MysticalCreatures
             builder.add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, bootstrap -> {
                 HolderGetter<Biome> biomes = bootstrap.lookup(Registries.BIOME);
                 bootstrap.register(PHOENIX_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(PHOENIX_SPAWNS_ON),
-                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(PHOENIX_ENTITY.get(), 1, 1)).build()));
+                        WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(PHOENIX_ENTITY.get(), 1, 1), 30).build()));
                 bootstrap.register(JACKALOPE_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(JACKALOPE_SPAWNS_ON),
                         WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(JACKALOPE_ENTITY.get(), 1, 1)).build()));
                 bootstrap.register(UNICORN_BIOME_MODIFIER, new BiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(UNICORN_SPAWNS_ON),
